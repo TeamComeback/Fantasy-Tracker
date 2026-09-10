@@ -1,0 +1,22 @@
+{
+  "updated": "2026-09-10",
+  "throughWeek": 0,
+  "_shape": "legs.<legId>.weeks.<weekNumber> = { val, opp, inj, note }. Any field omitted falls back to the schedule baked into index.html. Your own edits on the device always win over anything published here.",
+  "_legIds": [
+    "bowers", "herbert", "moore", "flowers",
+    "evans", "lamar", "bijan", "johnston", "dak", "waddle",
+    "nacua", "fox", "chase", "zayrush", "mclaurin", "dart"
+  ],
+  "legs": {
+    "bowers": {
+      "inj": "O",
+      "injNote": "Meniscus trim Sep 8, same knee as last year. Expected to miss one or two games.",
+      "weeks": {}
+    },
+    "johnston": {
+      "inj": "Q",
+      "injNote": "Lower body, questionable for Week 1.",
+      "weeks": {}
+    }
+  }
+}

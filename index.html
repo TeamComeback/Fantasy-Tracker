@@ -1,0 +1,563 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fantasy Tracker</title>
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tracker">
+<meta name="theme-color" content="#131519">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#131519;--panel:#1B1E24;--panel-2:#22262E;--rule:#2E333C;--well:#0E1014;
+    --paper:#E9E6DF;--dim:#8E9299;--dimmer:#63676E;
+    --gold:#C9A227;--live:#D9A441;--clear:#5BA36F;--strain:#C25B4E;--fill:#3A4E5C;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--paper);font-family:Barlow,system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:660px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top)) 16px calc(72px + env(safe-area-inset-bottom))}
+  .stamp{font-size:12px;color:var(--dimmer);margin:-6px 0 16px}
+  .stamp b{color:var(--dim);font-weight:400}
+  .num{font-family:"Barlow Condensed",Barlow,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+  h1{font-family:"Barlow Condensed",sans-serif;font-size:36px;font-weight:600;margin:0;letter-spacing:.02em;line-height:1}
+  h2{font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:500;margin:0 0 10px;letter-spacing:.02em}
+  a{color:var(--gold);text-decoration:none}
+  .meta{font-size:13px;color:var(--dim)}
+  .hidden{display:none}
+
+  /* home */
+  .top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
+  .slipcard{display:block;border:1px solid var(--rule);background:var(--panel);padding:16px 18px;margin-bottom:12px;color:var(--paper);cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .slipcard:active{background:var(--panel-2)}
+  .slipcard .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .slipcard .name{font-family:"Barlow Condensed",sans-serif;font-size:28px;font-weight:600;line-height:1}
+  .slipcard .pay{font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:600;color:var(--gold);line-height:1}
+  .dots{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+  .dot{height:8px;flex:1;min-width:24px;max-width:70px;border-radius:1px}
+  .slipcard .sub{margin-top:8px;font-size:13px;color:var(--dim)}
+  .slipcard .sub b{font-weight:500;color:var(--paper)}
+  .totals{border:1px solid var(--rule);border-top:none;background:var(--panel-2);padding:12px 18px;font-size:13px;color:var(--dim);display:flex;justify-content:space-between}
+  .totals b{color:var(--paper);font-weight:500}
+
+  /* detail */
+  .back{font-size:14px;color:var(--gold);margin-bottom:14px;display:inline-block;cursor:pointer;-webkit-tap-highlight-color:transparent;padding:4px 0}
+  .slip{border:1px solid var(--rule);background:var(--panel);padding:16px 18px;margin-bottom:8px}
+  .slip-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .stake{font-family:"Barlow Condensed",sans-serif;font-size:40px;font-weight:600;line-height:1;color:var(--gold)}
+  .weekbar{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--rule);flex-wrap:wrap}
+  .weekbar label{font-size:13px;color:var(--dim)}
+  .headline{border:1px solid var(--rule);border-top:none;background:var(--panel-2);padding:14px 18px;margin-bottom:22px;font-size:14px}
+  .headline b{font-weight:500}
+  .resolved{font-size:13px;color:var(--dim);padding:10px 18px;border:1px solid var(--rule);border-top:none;background:var(--panel)}
+  .resolved b{color:var(--clear);font-weight:500}
+
+  .leg{border:1px solid var(--rule);background:var(--panel);margin-bottom:14px}
+  .leg-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:14px 18px 0}
+  .who{font-family:"Barlow Condensed",sans-serif;font-size:24px;font-weight:500;line-height:1.1;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .line-txt{font-size:13px;color:var(--dim);margin-top:2px}
+  .badge{font-size:11px;letter-spacing:.06em;padding:4px 9px;border:1px solid;white-space:nowrap;flex-shrink:0}
+  .b-clear{color:var(--clear);border-color:var(--clear)}
+  .b-live{color:var(--live);border-color:var(--live)}
+  .b-strain{color:var(--strain);border-color:var(--strain)}
+  .inj{font-family:Barlow,sans-serif;font-size:11px;letter-spacing:.08em;padding:2px 6px;background:var(--strain);color:#fff;line-height:1.4}
+  .inj.q{background:var(--live);color:#17181C}
+
+  .hero{padding:14px 18px 4px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .hero-n{font-family:"Barlow Condensed",sans-serif;font-size:52px;font-weight:600;line-height:.9}
+  .hero-l{font-size:13px;color:var(--dim);max-width:220px;line-height:1.4}
+  .drift{font-size:13px;padding:0 18px 12px;color:var(--dim)}
+  .track{margin:0 18px 4px;height:26px;background:var(--well);position:relative;border:1px solid var(--rule)}
+  .fill{height:100%;background:var(--fill)}
+  .fill.danger{background:#5C3A3A}
+  .ghost{position:absolute;top:-4px;bottom:-4px;width:1px;background:var(--dim)}
+  .track-labels{display:flex;justify-content:space-between;padding:0 18px 14px;font-size:12px;color:var(--dimmer)}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:0}
+  .cell{background:var(--panel);padding:11px 18px}
+  .cell dt{font-size:12px;color:var(--dim);margin:0}
+  .cell dd{margin:2px 0 0;font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:500}
+
+  .matchups{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule)}
+  .mu{background:var(--panel);padding:11px 12px}
+  .mu span{display:block;font-size:11px;color:var(--dimmer);letter-spacing:.05em}
+  .mu strong{display:block;font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:500;margin-top:2px}
+  .mu em{display:block;font-style:normal;font-size:12px;color:var(--dim)}
+
+  .lastgame{padding:13px 18px;border-top:1px solid var(--rule);font-size:13.5px}
+  .lastgame .lg-h{display:flex;justify-content:space-between;color:var(--dim);font-size:12px;margin-bottom:4px}
+  .lastgame .lg-h b{color:var(--paper);font-weight:500}
+  .lastgame p{margin:0;color:var(--paper)}
+  .lastgame p.empty{color:var(--dimmer)}
+
+  .binary{padding:16px 18px 6px;display:flex;align-items:baseline;gap:14px}
+  .binary .state{font-family:"Barlow Condensed",sans-serif;font-size:40px;font-weight:600;line-height:1}
+  .binary .chances{font-size:13px;color:var(--dim)}
+
+  .notes{padding:13px 18px;font-size:13.5px;color:var(--dim);border-top:1px solid var(--rule)}
+  details summary{padding:11px 18px;font-size:13px;color:var(--gold);cursor:pointer;border-top:1px solid var(--rule);list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  .log{padding:4px 18px 16px}
+  .log-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #242830;font-size:14px;gap:10px}
+  .log-row span:first-child{color:var(--dim)}
+  .log-note{font-size:12.5px;color:var(--dimmer);padding:0 0 8px;border-bottom:1px solid #242830;margin-top:-4px}
+
+  .entry{border:1px solid var(--rule);background:var(--panel);padding:16px 18px;margin-top:28px}
+  .field{padding:10px 0;border-bottom:1px solid #242830}
+  .field .fr{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+  .field label{font-size:14px;flex:1 1 120px}
+  .field label em{display:block;font-style:normal;font-size:12px;color:var(--dim)}
+  input,select,textarea{background:var(--well);border:1px solid var(--rule);color:var(--paper);font-family:"Barlow Condensed",sans-serif;font-size:18px;padding:7px 9px}
+  input[type=number]{width:88px;text-align:right}
+  input.opp{width:92px;font-size:15px}
+  select{width:auto}
+  select.injsel{font-size:14px;font-family:Barlow,sans-serif;padding:7px 6px}
+  textarea{width:100%;margin-top:8px;font-family:Barlow,sans-serif;font-size:14px;min-height:56px;resize:vertical}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+  button{font-family:Barlow,sans-serif;font-size:15px;padding:11px 18px;margin-top:14px;background:var(--gold);color:#17181C;border:none;cursor:pointer}
+  button.ghostbtn{background:none;color:var(--dim);border:1px solid var(--rule);margin-left:8px}
+  .err{color:var(--strain);font-size:13px;margin-top:8px;display:none}
+  .saved{color:var(--clear);font-size:13px;margin-top:8px;display:none}
+  .foot{font-size:12.5px;color:var(--dimmer);margin-top:26px;line-height:1.6}
+  @media (max-width:420px){.matchups{grid-template-columns:1fr}.hero-n{font-size:44px}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap" id="app"></div>
+
+<script>
+/* ---------- constants ---------- */
+const GAMES = 17;
+const SEASON_START = new Date("2026-09-08T04:00:00-04:00"); // Tuesday of week 1
+
+const SCHED = {
+  LV:  {1:"vs MIA",2:"at LAC",3:"at NO",4:"vs KC",5:"at NE",6:"vs BUF",7:"vs LAR",8:"at NYJ",9:"at SF",10:"vs SEA",11:"at DEN",12:"at CLE",13:"BYE",14:"vs LAC",15:"vs DEN",16:"vs TEN",17:"TBD",18:"at KC"},
+  LAC: {1:"vs ARI",2:"vs LV",3:"at BUF",4:"at SEA",5:"vs DEN",6:"at KC",7:"BYE",8:"at LAR",9:"vs HOU",10:"at BAL",11:"vs NYJ",12:"vs NE",13:"at TB",14:"at LV",15:"vs SF",16:"at MIA",17:"TBD",18:"TBD"},
+  BUF: {1:"at HOU",2:"vs DET",3:"vs LAC",4:"vs NE",5:"at LAR",6:"at LV",7:"BYE",8:"vs BAL",9:"at MIN",10:"at NYJ",11:"vs MIA",12:"vs KC",13:"at NE",14:"at GB",15:"vs CHI",16:"at DEN",17:"at MIA",18:"vs NYJ"},
+  BAL: {1:"at IND",2:"vs NO",3:"at DAL",4:"vs TEN",5:"at ATL",6:"at CLE",7:"vs CIN",8:"at BUF",9:"vs JAX",10:"vs LAC",11:"at CAR",12:"at HOU",13:"BYE",14:"vs TB",15:"at PIT",16:"vs CLE",17:"TBD",18:"TBD"},
+  SF:  {1:"at LAR",2:"vs MIA",3:"vs ARI",4:"vs DEN",5:"at SEA",6:"vs WAS",7:"at ATL",8:"BYE",9:"vs LV",10:"at DAL",11:"vs MIN",12:"vs SEA",13:"at NYG",14:"vs LAR",15:"at LAC",16:"at KC",17:"TBD",18:"TBD"},
+  ATL: {1:"at PIT",2:"vs CAR",3:"at GB",4:"at NO",5:"vs BAL",6:"vs CHI",7:"vs SF",8:"at TB",9:"vs CIN",10:"vs KC",11:"BYE",12:"at MIN",13:"vs DET",14:"at CLE",15:"at WAS",16:"vs TB",17:"TBD",18:"TBD"},
+  DAL: {1:"at NYG",2:"vs WAS",3:"vs BAL",4:"at HOU",5:"vs TB",6:"at GB",7:"at PHI",8:"vs ARI",9:"at IND",10:"vs SF",11:"vs TEN",12:"vs PHI",13:"at SEA",14:"BYE",15:"at LAR",16:"vs JAX",17:"TBD",18:"TBD"},
+  DEN: {1:"at KC",2:"vs JAX",3:"vs LAR",4:"at SF",5:"at LAC",6:"vs SEA",7:"at ARI",8:"vs KC",9:"at CAR",10:"BYE",11:"vs LV",12:"at PIT",13:"vs MIA",14:"at NYJ",15:"at LV",16:"vs BUF",17:"TBD",18:"TBD"},
+  LAR: {1:"vs SF",2:"vs NYG",3:"at DEN",4:"at PHI",5:"vs BUF",6:"vs ARI",7:"at LV",8:"vs LAC",9:"at WAS",10:"at ARI",11:"BYE",12:"vs GB",13:"vs KC",14:"at SF",15:"vs DAL",16:"at SEA",17:"TBD",18:"TBD"},
+  DET: {1:"vs NO",2:"at BUF",3:"vs NYJ",4:"at CAR",5:"at ARI",6:"BYE",7:"vs GB",8:"vs MIN",9:"at MIA",10:"vs NE",11:"vs TB",12:"vs CHI",13:"at ATL",14:"vs TEN",15:"at MIN",16:"vs NYG",17:"TBD",18:"TBD"},
+  CIN: {1:"vs TB",2:"at HOU",3:"at PIT",4:"vs JAX",5:"at MIA",6:"BYE",7:"at BAL",8:"vs TEN",9:"at ATL",10:"vs PIT",11:"at WAS",12:"vs NO",13:"at CLE",14:"vs KC",15:"at CAR",16:"at IND",17:"TBD",18:"TBD"},
+  WAS: {1:"at PHI",2:"at DAL",3:"vs SEA",4:"vs IND",5:"vs NYG",6:"at SF",7:"BYE",8:"vs PHI",9:"vs LAR",10:"at NYG",11:"vs CIN",12:"at ARI",13:"at TEN",14:"vs HOU",15:"vs ATL",16:"at MIN",17:"TBD",18:"TBD"},
+  NYG: {1:"vs DAL",2:"at LAR",3:"vs TEN",4:"vs ARI",5:"at WAS",6:"vs NO",7:"at HOU",8:"BYE",9:"at PHI",10:"vs WAS",11:"vs JAX",12:"at IND",13:"vs SF",14:"at SEA",15:"vs CLE",16:"at DET",17:"TBD",18:"TBD"}
+};
+
+const PARLAYS = [
+  {
+    id:"goat", name:"Goat Whale", stake:"$25", payout:"$500", mult:"20x", picks:"5-pick power play",
+    resolved:[{who:"Sam Darnold", text:"over 0.5 pass yards cashed Wednesday night: 13 yards on the opening drive before a hip injury ended his game."}],
+    legs:[
+      {id:"bowers",who:"Brock Bowers",team:"LV",pos:"TE",color:"#C8CFD2",stat:"receiving yards",line:925.5,dir:"over",kind:"pace",unit:"yds",dec:0,
+       ref:{label:"2025 rate",rate:56.7,blurb:"680 yds in 12 games"},alt:{label:"2024 rate",rate:70.2},
+       inj:"O",injNote:"Meniscus trim Sep 8, same knee as last year. Expected to miss one or two games.",
+       notes:"Rookie year was 1,194 on 112 catches. 2025 was 680 in 12 before the knee put him on IR. His per-game rate cleared this line both years, so it is a health bet more than a talent bet \u2014 and the health bet already took a hit. Cousins and Mendoza at QB, Kubiak calling plays, Mayer filling in."},
+      {id:"herbert",who:"Justin Herbert",team:"LAC",pos:"QB",color:"#4BB4E6",stat:"passing touchdowns",line:25.5,dir:"over",kind:"pace",unit:"TD",dec:2,
+       ref:{label:"2025 rate",rate:1.625,blurb:"26 TDs in 16 games"},alt:{label:"2021 rate",rate:2.24},inj:"",
+       notes:"Cleared this exact number by half a score last season. Roman out, Mike McDaniel in as coordinator, line rebuilt around a healthy Slater plus Biadasz and Slaughter. Took a franchise-record 54 sacks in 2025, so protection matters more than scheme."},
+      {id:"moore",who:"DJ Moore",team:"BUF",pos:"WR",color:"#5183E8",stat:"receiving yards",line:825.5,dir:"over",kind:"pace",unit:"yds",dec:0,
+       ref:{label:"2025 rate",rate:40.1,blurb:"682 yds in 17 games"},alt:{label:"2023 rate",rate:80.2},inj:"",
+       notes:"Career-worst 682 on 85 targets in Chicago. Now with Allen and reunited with Joe Brady, who got 1,193 and 1,157 out of him in Carolina. Buffalo's whole receiver room managed 2,107 yards last year, so the volume should be there. Played 17 games five years running."},
+      {id:"flowers",who:"Zay Flowers",team:"BAL",pos:"WR",color:"#9583E0",stat:"receiving touchdowns",line:5.5,dir:"over",kind:"pace",unit:"TD",dec:2,
+       ref:{label:"2025 rate",rate:0.294,blurb:"5 TDs in 17 games"},alt:{label:"career best",rate:0.294},inj:"",
+       notes:"He has never scored six. Five as a rookie, four in 2024, five last year on a career-high 1,211 yards. Only 11 red-zone targets in 2025. Declan Doyle replaces Monken, Likely and Hopkins are gone, but Andrews still owns the stripe. Also carrying a leg in the Fun slip."}
+    ]
+  },
+  {
+    id:"new", name:"New Systems", stake:"$12.50", payout:"$468.75", mult:"37.5x", picks:"6-pick power play", resolved:[],
+    legs:[
+      {id:"evans",who:"Mike Evans",team:"SF",pos:"WR",color:"#C6A96A",stat:"receiving touchdowns",line:6.5,dir:"over",kind:"pace",unit:"TD",dec:2,
+       ref:{label:"2025 rate",rate:0.375,blurb:"3 TDs in 8 games"},alt:{label:"career rate",rate:0.61},inj:"",
+       notes:"Eight games last year with hamstring and collarbone trouble, the first sub-1,000 season of his career. Before that, six seasons of 10 or more scores. 33 now, new team, but the 49ers' receiver room is thin and Shanahan has never had a jump-ball red-zone target like him. First game is Thursday night in Melbourne."},
+      {id:"lamar",who:"Lamar Jackson",team:"BAL",pos:"QB",color:"#9583E0",stat:"pass + rush yards",line:3799.5,dir:"over",kind:"pace",unit:"yds",dec:0,
+       ref:{label:"2025 rate",rate:222.9,blurb:"2,898 combined in 13 games"},alt:{label:"2024 rate",rate:299.2},inj:"",
+       notes:"2025 was hamstring, knee, ankle, back and toe: 13 games, career-low 67 carries. His 2025 per-game rate sits almost exactly on the line. His 2024 rate clears it by a mile. Jesse Minter is the new head coach, Declan Doyle calls plays. Health decides this one."},
+      {id:"bijan",who:"Bijan Robinson",team:"ATL",pos:"RB",color:"#E04A45",stat:"receptions",line:65.5,dir:"over",kind:"pace",unit:"rec",dec:2,
+       ref:{label:"2025 rate",rate:4.65,blurb:"79 rec in 17 games"},alt:{label:"2024 rate",rate:3.59},inj:"",
+       notes:"79 catches on 99 targets last year, 61 the year before, 58 as a rookie. All three seasons clear this line. Kevin Stefanski is the new head coach and Allgeier is gone, so the touches consolidate. The only question is whether Penix or Tua is throwing them."},
+      {id:"johnston",who:"Quentin Johnston",team:"LAC",pos:"WR",color:"#4BB4E6",stat:"receiving touchdowns",line:5.5,dir:"over",kind:"pace",unit:"TD",dec:2,
+       ref:{label:"2025 rate",rate:0.571,blurb:"8 TDs in 14 games"},alt:{label:"career rate",rate:0.39},
+       inj:"Q",injNote:"Lower body, questionable for Week 1.",
+       notes:"Eight touchdowns in each of the last two seasons, the first Charger to do that since Gates. McDaniel has been openly bullish on him. Moves with Herbert's TD total in Goat Whale, so those two legs rise and fall together. McConkey is still the target leader."},
+      {id:"dak",who:"Dak Prescott",team:"DAL",pos:"QB",color:"#7A9CC6",stat:"passing yards",line:3999.5,dir:"over",kind:"pace",unit:"yds",dec:0,
+       ref:{label:"2025 rate",rate:267.8,blurb:"4,552 yds in 17 games"},alt:{label:"2019 rate",rate:306.4},inj:"",
+       notes:"Led the league in attempts, completions and yards last year. Fourth 4,000-yard season. Lamb and Pickens both back. The pass-happiest offense in football with a defense that gives up 30 a game, which means he throws in the fourth quarter. Missed time in 2020 and 2024 is the only real risk."},
+      {id:"waddle",who:"Jaylen Waddle",team:"DEN",pos:"WR",color:"#FF6A2A",stat:"receiving yards",line:924.5,dir:"over",kind:"pace",unit:"yds",dec:0,
+       ref:{label:"2025 rate",rate:56.9,blurb:"910 yds in 16 games"},alt:{label:"2022 rate",rate:79.8},inj:"",
+       notes:"910 in a broken Miami offense last year, three straight 1,000-yard seasons to open his career. Denver paid a first for him. The catch is target competition: Sutton has back-to-back 1,000-yard years, Franklin had 709, and Payton spreads it. His 2025 rate sits right on the line. First game is Monday night at KC."}
+    ]
+  },
+  {
+    id:"fun", name:"Fun", stake:"$12.51", payout:"$469.13", mult:"37.5x", picks:"6-pick power play", resolved:[],
+    legs:[
+      {id:"nacua",who:"Puka Nacua",team:"LAR",pos:"WR",color:"#FFD24A",stat:"rushing touchdowns",line:0.5,dir:"over",kind:"binary",unit:"TD",dec:0,inj:"",
+       notes:"One rushing score in 2025 (a 45-yard jet sweep in Week 2), one as a rookie, none in 2024. McVay uses him on sweeps regularly, so the chances come every few weeks. Two of three seasons would have cashed this. First game is tonight in Melbourne."},
+      {id:"fox",who:"Jack Fox",team:"DET",pos:"P",color:"#2E9BDF",stat:"passing yards",line:0.5,dir:"over",kind:"binary",unit:"yds",dec:0,inj:"",
+       notes:"Former high-school QB. Career 4-of-5 passing for 61 yards on fake punts across six seasons, every completion a first down. Campbell and Fipp dial these up, but not every year \u2014 roughly one attempt a season on average with gaps. Pure coin flip on whether they call it."},
+      {id:"chase",who:"Ja'Marr Chase",team:"CIN",pos:"WR",color:"#FF6A2A",stat:"rushing yards",line:11.5,dir:"over",kind:"pace",unit:"yds",dec:1,
+       ref:{label:"2024 rate",rate:1.9,blurb:"32 yds in 2024"},alt:null,inj:"",
+       notes:"Single-digit carries a season, but 32 yards in 2024 on jet sweeps and end-arounds. This is lumpy: one 15-yard sweep clears it, or he gets three carries for four yards all year. Burrow healthy means more scoring drives and more gadget looks."},
+      {id:"zayrush",who:"Zay Flowers",team:"BAL",pos:"WR",color:"#9583E0",stat:"rushing yards",line:54.5,dir:"over",kind:"pace",unit:"yds",dec:1,
+       ref:{label:"3-yr avg rate",rate:3.4,blurb:"174 yds over 3 seasons"},alt:null,inj:"",
+       notes:"174 career rushing yards across three seasons, about 58 a year, so the line sits on his average. Monken used him on sweeps; whether Doyle keeps that package is the whole question. Same player as the Goat Whale rec-TD leg, so one injury hits two slips."},
+      {id:"mclaurin",who:"Terry McLaurin",team:"WAS",pos:"WR",color:"#B8434F",stat:"receiving touchdowns",line:5.5,dir:"over",kind:"pace",unit:"TD",dec:2,
+       ref:{label:"2025 rate",rate:0.30,blurb:"3 TDs in 10 games"},alt:{label:"2024 rate",rate:0.76},inj:"",
+       notes:"Thirteen scores in 2024 with Daniels, three in an injury-shortened 2025 with backups throwing. Daniels is back, new OC David Blough said he wants him at ten targets a game, then Washington signed Stefon Diggs in August. Which version of the target share shows up decides this."},
+      {id:"dart",who:"Jaxson Dart",team:"NYG",pos:"QB",color:"#5A7FD9",stat:"passing yards",line:3124.5,dir:"under",kind:"pace",unit:"yds",dec:0,
+       ref:{label:"2025 rate",rate:162.3,blurb:"2,272 yds in 14 games"},alt:{label:"per start",rate:189.3},inj:"",
+       notes:"Under. He needs to stay below 3,125. Rookie year was 2,272 in 14 games with 487 rushing yards and nine rushing TDs, so the offense ran through his legs. Harbaugh and Nagy are expected to run first. Nabers is back from the ACL, Mooney and Likely were added. Five concussion checks last year; any missed game helps this leg."}
+    ]
+  }
+];
+
+/* ---------- state ----------
+   Two sources, merged:
+     remote  = data.json committed to the repo (what the Monday job writes)
+     local   = this device's edits and notes
+   Local wins field by field, so an automated stat never wipes your note,
+   and your correction is never overwritten by the next publish.        */
+const KEY = "fantasy_tracker_v2";
+let remote = { updated:null, throughWeek:0, legs:{} };
+let local  = { legs:{} };
+let store  = { legs:{} };
+
+const disk = {
+  async get(){
+    try{ if(window.storage && window.storage.get){ const r = await window.storage.get(KEY); return r && r.value ? r.value : null; } }catch(e){}
+    try{ return localStorage.getItem(KEY); }catch(e){ return null; }
+  },
+  async set(v){
+    try{ if(window.storage && window.storage.set){ await window.storage.set(KEY, v); return true; } }catch(e){}
+    try{ localStorage.setItem(KEY, v); return true; }catch(e){ return false; }
+  }
+};
+
+function blankLeg(l){ return { weeks:{}, inj:"", injNote:"" }; }
+
+function rebuild(){
+  store = { legs:{} };
+  for(const p of PARLAYS) for(const l of p.legs){
+    const r = (remote.legs && remote.legs[l.id]) || {};
+    const o = (local.legs && local.legs[l.id]) || {};
+    const weeks = {};
+    for(const w of Object.keys(r.weeks || {})) weeks[w] = Object.assign({}, r.weeks[w]);
+    for(const w of Object.keys(o.weeks || {})) weeks[w] = Object.assign({}, weeks[w] || {}, o.weeks[w]);
+    store.legs[l.id] = {
+      weeks,
+      inj:     o.inj     !== undefined ? o.inj     : (r.inj     !== undefined ? r.inj     : (l.inj || "")),
+      injNote: o.injNote !== undefined ? o.injNote : (r.injNote !== undefined ? r.injNote : (l.injNote || ""))
+    };
+  }
+}
+
+async function load(){
+  try{
+    const res = await fetch("data.json", {cache:"no-store"});
+    if(res.ok){ const j = await res.json(); if(j && typeof j === "object") remote = Object.assign(remote, j); }
+  }catch(e){ /* running from the artifact frame or offline: seeds only */ }
+  const raw = await disk.get();
+  if(raw){ try{ const j = JSON.parse(raw); if(j && j.legs) local = j; }catch(e){} }
+  if(!local.legs) local.legs = {};
+  rebuild();
+  route();
+}
+
+async function persist(){ rebuild(); await disk.set(JSON.stringify(local)); }
+
+/* ---------- helpers ---------- */
+function currentWeek(){
+  const d = new Date();
+  const w = 1 + Math.floor((d - SEASON_START) / (7*24*3600*1000));
+  return Math.max(1, Math.min(18, w));
+}
+function S(id){ return store.legs[id]; }
+function loggedWeeks(id){ return Object.keys(S(id).weeks).filter(w => typeof S(id).weeks[w].val === "number").map(Number).sort((a,b)=>a-b); }
+function total(id){ return loggedWeeks(id).reduce((s,w)=> s + S(id).weeks[w].val, 0); }
+function opp(leg, wk){ const t = S(leg.id).weeks[wk] && S(leg.id).weeks[wk].opp; return t || (SCHED[leg.team] && SCHED[leg.team][wk]) || ""; }
+function isBye(leg, wk){ return opp(leg,wk) === "BYE"; }
+function fmt(n, dec){ if(n===null || !isFinite(n)) return "\u2014"; return dec ? n.toFixed(dec) : Math.round(n).toLocaleString(); }
+function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+/* ---------- engine ---------- */
+function compute(leg){
+  const st = S(leg.id);
+  const played = loggedWeeks(leg.id).length;
+  const cur = total(leg.id);
+  const remaining = Math.max(0, GAMES - played);
+  const target = leg.dir === "over" ? Math.floor(leg.line) + 1 : Math.floor(leg.line);
+
+  if(leg.kind === "binary"){
+    const hit = cur >= 1;
+    const hitWeek = hit ? loggedWeeks(leg.id).find(w => S(leg.id).weeks[w].val >= 1) : null;
+    const state = hit ? "clear" : remaining === 0 ? "strain" : remaining >= 8 ? "live" : "strain";
+    return {kind:"binary", played, cur, remaining, target, hit, hitWeek, state, badge: hit ? "Cashed" : remaining === 0 ? "Missed" : "Not yet"};
+  }
+
+  const flat = target / GAMES;
+  let req = null, proj = null, cushion = 0, state = "live", badge = "Live";
+  if(leg.dir === "over"){
+    req = remaining > 0 ? (target - cur) / remaining : null;
+    proj = played > 0 ? (cur / played) * GAMES : null;
+    cushion = cur - flat * played;
+    if(cur >= target){ state = "clear"; badge = "Cashed"; }
+    else if(remaining === 0){ state = "strain"; badge = "Missed"; }
+    else {
+      const ratio = req / leg.ref.rate;
+      state = ratio < 0.85 ? "clear" : ratio > 1.10 ? "strain" : "live";
+      badge = state === "clear" ? "Comfortable" : state === "strain" ? "Strained" : "Live";
+    }
+  } else {
+    // under: target is the ceiling; req is what he can afford per game
+    req = remaining > 0 ? (target - cur) / remaining : null;
+    proj = played > 0 ? (cur / played) * GAMES : null;
+    cushion = flat * played - cur; // positive = under budget
+    if(cur > target){ state = "strain"; badge = "Missed"; }
+    else if(remaining === 0){ state = "clear"; badge = "Cashed"; }
+    else {
+      const ratio = req / leg.ref.rate;
+      state = ratio > 1.15 ? "clear" : ratio < 0.90 ? "strain" : "live";
+      badge = state === "clear" ? "Comfortable" : state === "strain" ? "Strained" : "Live";
+    }
+  }
+  return {kind:"pace", played, cur, remaining, target, flat, req, proj, cushion, state, badge};
+}
+
+function pressure(leg){ // higher = tighter; used for headline + home dots
+  const c = compute(leg);
+  if(c.kind === "binary") return c.hit ? 0 : 1.0 + (17 - c.remaining) / 17;
+  if(c.badge === "Cashed") return 0;
+  if(c.badge === "Missed") return 9;
+  return leg.dir === "over" ? c.req / leg.ref.rate : leg.ref.rate / c.req;
+}
+const stateColor = s => s === "clear" ? "var(--clear)" : s === "strain" ? "var(--strain)" : "var(--live)";
+
+/* ---------- views ---------- */
+function injTag(leg){
+  const st = S(leg.id).inj;
+  if(!st) return "";
+  return '<span class="inj' + (st === "Q" ? " q" : "") + '" title="' + esc(S(leg.id).injNote) + '">' + st + '</span>';
+}
+
+function legHTML(p, leg, wkView){
+  const c = compute(leg);
+  const bcls = c.state === "clear" ? "b-clear" : c.state === "strain" ? "b-strain" : "b-live";
+  const prevW = wkView - 1, nextW = wkView + 1;
+  const prevRec = S(leg.id).weeks[prevW];
+  const prevVal = prevRec && typeof prevRec.val === "number" ? fmt(prevRec.val, leg.dec==2?0:leg.dec) + " " + leg.unit : (isBye(leg,prevW) ? "bye" : "not logged");
+  const lineTxt = leg.team + " " + leg.pos + " &middot; " + leg.dir + " " + leg.line + " " + leg.stat;
+
+  let body = "";
+  if(c.kind === "binary"){
+    body =
+      '<div class="binary"><div class="state" style="color:' + (c.hit ? "var(--clear)" : "var(--paper)") + '">' + (c.hit ? "Hit in week " + c.hitWeek : "Not yet") + '</div>' +
+      '<div class="chances">' + (c.hit ? "resolved, nothing left to sweat" : c.remaining + " games left to get one") + '</div></div>' +
+      '<div class="drift">Needs a single ' + (leg.unit === "TD" ? "score" : "completion") + ' all season. No pace to track, just whether the play gets called and lands.</div>';
+  } else if(leg.dir === "over"){
+    const pct = Math.min(100, (c.cur / c.target) * 100);
+    const ghost = Math.min(100, (c.flat * c.played / c.target) * 100);
+    const drift = c.played === 0
+      ? "Season pace: " + fmt(c.flat, leg.dec) + " per game across all " + GAMES + "."
+      : "Started at " + fmt(c.flat, leg.dec) + " per game. The bar has " + (c.req > c.flat ? "risen " + fmt(((c.req/c.flat)-1)*100,0) : "dropped " + fmt((1-(c.req/c.flat))*100,0)) + "% after " + c.played + (c.played===1?" game.":" games.");
+    body =
+      '<div class="hero"><div class="hero-n num">' + fmt(c.req, leg.dec) + '</div><div class="hero-l">' + leg.unit + ' per game needed over the ' + c.remaining + ' games left</div></div>' +
+      '<div class="drift">' + drift + '</div>' +
+      '<div class="track"><div class="fill" style="width:' + pct.toFixed(1) + '%"></div>' + (c.played ? '<div class="ghost" style="left:' + ghost.toFixed(1) + '%"></div>' : '') + '</div>' +
+      '<div class="track-labels"><span>' + fmt(c.cur, 0) + ' banked</span><span>' + c.target + ' needed</span></div>' +
+      '<dl class="grid">' +
+        '<div class="cell"><dt>Cushion vs flat pace</dt><dd class="num">' + (c.played ? (c.cushion>=0?"+":"") + fmt(c.cushion, leg.dec==2?1:0) : "\u2014") + '</dd></div>' +
+        '<div class="cell"><dt>Projected finish</dt><dd class="num">' + (c.proj===null ? "\u2014" : fmt(c.proj, leg.dec==2?1:0)) + '</dd></div>' +
+        '<div class="cell"><dt>' + leg.ref.label + '</dt><dd class="num">' + fmt(leg.ref.rate, leg.dec) + '</dd></div>' +
+        (leg.alt ? '<div class="cell"><dt>' + leg.alt.label + '</dt><dd class="num">' + fmt(leg.alt.rate, leg.dec) + '</dd></div>' : '<div class="cell"><dt>Games remaining</dt><dd class="num">' + c.remaining + '</dd></div>') +
+      '</dl>';
+  } else {
+    const pct = Math.min(100, (c.cur / c.target) * 100);
+    const ghost = Math.min(100, (c.flat * c.played / c.target) * 100);
+    const drift = c.played === 0
+      ? "Budget: " + fmt(c.flat, leg.dec) + " per game keeps him under across all " + GAMES + "."
+      : "Started with a budget of " + fmt(c.flat, leg.dec) + " per game. It has " + (c.req > c.flat ? "loosened to" : "tightened to") + " " + fmt(c.req, leg.dec) + " after " + c.played + (c.played===1?" game.":" games.");
+    body =
+      '<div class="hero"><div class="hero-n num">' + fmt(c.req, leg.dec) + '</div><div class="hero-l">' + leg.unit + ' per game he can average over the ' + c.remaining + ' games left and still stay under</div></div>' +
+      '<div class="drift">' + drift + '</div>' +
+      '<div class="track"><div class="fill danger" style="width:' + pct.toFixed(1) + '%"></div>' + (c.played ? '<div class="ghost" style="left:' + ghost.toFixed(1) + '%"></div>' : '') + '</div>' +
+      '<div class="track-labels"><span>' + fmt(c.cur, 0) + ' used</span><span>' + c.target + ' is the ceiling</span></div>' +
+      '<dl class="grid">' +
+        '<div class="cell"><dt>Room vs flat budget</dt><dd class="num">' + (c.played ? (c.cushion>=0?"+":"") + fmt(c.cushion, 0) : "\u2014") + '</dd></div>' +
+        '<div class="cell"><dt>Projected finish</dt><dd class="num">' + (c.proj===null ? "\u2014" : fmt(c.proj, 0)) + '</dd></div>' +
+        '<div class="cell"><dt>' + leg.ref.label + '</dt><dd class="num">' + fmt(leg.ref.rate, leg.dec) + '</dd></div>' +
+        (leg.alt ? '<div class="cell"><dt>' + leg.alt.label + '</dt><dd class="num">' + fmt(leg.alt.rate, leg.dec) + '</dd></div>' : '') +
+      '</dl>';
+  }
+
+  const lastNote = prevRec && prevRec.note ? '<p>' + esc(prevRec.note) + '</p>' : '<p class="empty">No breakdown logged yet for this game.</p>';
+  const rows = loggedWeeks(leg.id).map(w => {
+    const r = S(leg.id).weeks[w];
+    return '<div class="log-row"><span>Week ' + w + (opp(leg,w) ? " &middot; " + esc(opp(leg,w)) : "") + (r.inj ? ' &middot; <span class="inj' + (r.inj==="Q"?" q":"") + '">' + r.inj + '</span>' : '') + '</span><span class="num">' + fmt(r.val, leg.dec==2?0:leg.dec) + ' ' + leg.unit + '</span></div>' +
+      (r.note ? '<div class="log-note">' + esc(r.note) + '</div>' : '');
+  }).join("");
+
+  return '<div class="leg" style="border-left:3px solid ' + leg.color + '">' +
+    '<div class="leg-head"><div><div class="who" style="color:' + leg.color + '">' + leg.who + injTag(leg) + '</div><div class="line-txt">' + lineTxt + '</div></div>' +
+      '<div class="badge ' + bcls + '">' + c.badge + '</div></div>' +
+    body +
+    '<div class="matchups">' +
+      '<div class="mu"><span>Last</span><strong>' + (esc(opp(leg,prevW)) || "\u2014") + '</strong><em>' + prevVal + '</em></div>' +
+      '<div class="mu"><span>This week</span><strong>' + (esc(opp(leg,wkView)) || "\u2014") + '</strong><em>week ' + wkView + '</em></div>' +
+      '<div class="mu"><span>Next</span><strong>' + (esc(opp(leg,nextW)) || "\u2014") + '</strong><em>week ' + nextW + '</em></div>' +
+    '</div>' +
+    '<div class="lastgame"><div class="lg-h"><span>Last game</span><b>' + (prevRec && typeof prevRec.val==="number" ? "Week " + prevW + " " + esc(opp(leg,prevW)) : "\u2014") + '</b></div>' + lastNote + '</div>' +
+    (S(leg.id).injNote ? '<div class="notes" style="color:var(--paper)">' + esc(S(leg.id).injNote) + '</div>' : '') +
+    '<div class="notes">' + leg.notes + '</div>' +
+    (rows ? '<details><summary>Game log</summary><div class="log">' + rows + '</div></details>' : '') +
+  '</div>';
+}
+
+function renderHome(){
+  const wk = currentWeek();
+  let html = '<div class="top"><h1>Fantasy Tracker</h1><span class="meta">week ' + wk + ' of 18</span></div>';
+  html += '<div class="stamp">' + (remote.updated
+    ? 'Stats published through week <b>' + remote.throughWeek + '</b> &middot; last refresh <b>' + esc(remote.updated) + '</b>'
+    : 'No published stats yet &middot; logging by hand') + '</div>';
+  let stake = 0, pay = 0, open = 0, dead = 0;
+  for(const p of PARLAYS){
+    const cs = p.legs.map(l => ({leg:l, c:compute(l)}));
+    const alive = cs.filter(x => x.c.badge !== "Cashed" && x.c.badge !== "Missed").length;
+    const missed = cs.filter(x => x.c.badge === "Missed").length;
+    const tight = cs.slice().sort((a,b)=> pressure(b.leg) - pressure(a.leg))[0];
+    stake += parseFloat(p.stake.replace("$","")); pay += parseFloat(p.payout.replace("$",""));
+    if(missed) dead++; else open++;
+    html += '<div class="slipcard" data-slip="' + p.id + '" role="button" tabindex="0">' +
+      '<div class="row"><div class="name">' + p.name + '</div><div class="pay num">' + p.payout + '</div></div>' +
+      '<div class="meta">' + p.stake + ' &middot; ' + p.picks + ' &middot; ' + p.mult + '</div>' +
+      '<div class="dots">' + cs.map(x => '<div class="dot" style="background:' + (x.c.badge === "Missed" ? "var(--strain)" : stateColor(x.c.state)) + '" title="' + x.leg.who + '"></div>').join("") + '</div>' +
+      '<div class="sub">' + (missed ? '<b style="color:var(--strain)">Busted</b> &middot; ' : '') + alive + ' of ' + p.legs.length + ' legs open &middot; tightest: <b style="color:' + tight.leg.color + '">' + tight.leg.who + '</b></div>' +
+    '</div>';
+  }
+  html += '<div class="totals"><span><b>$' + stake.toFixed(2) + '</b> staked</span><span><b>$' + pay.toFixed(2) + '</b> if all three land</span><span><b>' + open + '</b> of 3 alive</span></div>';
+  html += '<p class="foot">Green is comfortable, amber is live, red is strained or busted. Tap a slip for pace, matchups, injury tags and the game log. Everything you save here stays saved.</p>';
+  document.getElementById("app").innerHTML = html;
+  Array.prototype.forEach.call(document.querySelectorAll("[data-slip]"), el => {
+    const go = () => openSlip(el.getAttribute("data-slip"));
+    el.addEventListener("click", go);
+    el.addEventListener("keydown", e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); go(); } });
+  });
+}
+
+function renderParlay(p){
+  const nowWk = currentWeek();
+  const wkView = p._view || nowWk;
+  const cs = p.legs.map(l => ({leg:l, c:compute(l)}));
+  const alive = cs.filter(x => x.c.badge !== "Cashed" && x.c.badge !== "Missed").length;
+  const missed = cs.filter(x => x.c.badge === "Missed").length;
+  const tight = cs.slice().sort((a,b)=> pressure(b.leg) - pressure(a.leg))[0];
+  const played = Math.max(...p.legs.map(l => loggedWeeks(l.id).length), 0);
+
+  let html = '<span class="back" id="back" role="button" tabindex="0">&larr; All slips</span>';
+  html += '<div class="slip"><div class="slip-top"><div><h1>' + p.name + '</h1><div class="meta">' + p.picks + ' &middot; ' + p.mult + '</div></div>' +
+    '<div style="text-align:right"><div class="stake num">' + p.payout + '</div><div class="meta">from ' + p.stake + '</div></div></div>' +
+    '<div class="weekbar"><label for="wk">Viewing week</label><select id="wk">' + Array.from({length:18},(_,i)=>'<option value="'+(i+1)+'"'+((i+1)===wkView?' selected':'')+'>Week '+(i+1)+'</option>').join("") + '</select>' +
+    '<span class="meta">' + (played === 0 ? "no games logged yet" : played + " weeks logged") + '</span></div></div>';
+
+  let tightTxt;
+  if(tight.c.kind === "binary") tightTxt = "still waiting on a single play";
+  else if(tight.leg.dir === "under") tightTxt = "can afford only " + fmt(tight.c.req, tight.leg.dec) + " " + tight.leg.unit + " a game";
+  else tightTxt = "needing " + fmt(tight.c.req, tight.leg.dec) + " " + tight.leg.unit + " a game against a " + tight.leg.ref.blurb + " baseline";
+  html += p.resolved.map(r => '<div class="resolved"><b>' + r.who + '</b> ' + r.text + '</div>').join("");
+  html += '<div class="headline">' + (missed ? '<b style="color:var(--strain)">Slip is busted.</b> ' : (played === 0 ? "Nothing logged yet, every leg is priced off 2025 form. " : alive + " of " + p.legs.length + " legs still open. ")) +
+    "Tightest right now: <b style=\"color:" + tight.leg.color + "\">" + tight.leg.who + "</b>, " + tightTxt + ".</div>";
+
+  html += p.legs.map(l => legHTML(p, l, wkView)).join("");
+
+  // entry
+  const ewk = p._ewk || Math.min(18, Math.max(1, played + 1));
+  html += '<div class="entry"><h2>Log a week</h2>' +
+    '<div class="field"><div class="fr"><label for="ewk">Week</label><select id="ewk">' + Array.from({length:18},(_,i)=>'<option value="'+(i+1)+'"'+((i+1)===ewk?' selected':'')+'>Week '+(i+1)+'</option>').join("") + '</select></div></div>' +
+    '<div id="entryfields"></div>' +
+    '<button id="save">Save week</button><button class="ghostbtn" id="clear">Clear this slip</button>' +
+    '<div class="err" id="err"></div><div class="saved" id="ok">Saved</div></div>';
+  html += '<p class="foot">Log 0 with an O or IR tag when he sits; the season total does not grow but the games-remaining count still drops, which is what actually happens to the bet. Over legs show the per-game rate still needed. The under leg shows the per-game rate he can afford. Binary legs just wait for one play. The pale marker is where a flat pace would sit. The status tag next to a name is his current designation; the one in the game log is what he was that week. Use the note box for how he played and why.</p>';
+
+  document.getElementById("app").innerHTML = html;
+  const back = document.getElementById("back");
+  const home = () => { p._view = null; p._ewk = null; renderHome(); window.scrollTo({top:0}); };
+  back.addEventListener("click", home);
+  back.addEventListener("keydown", e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); home(); } });
+  document.getElementById("wk").addEventListener("change", e => { p._view = Number(e.target.value); renderParlay(p); });
+  document.getElementById("ewk").addEventListener("change", e => { p._ewk = Number(e.target.value); drawEntry(p); });
+  document.getElementById("save").addEventListener("click", () => saveWeek(p));
+  document.getElementById("clear").addEventListener("click", async () => {
+    for(const l of p.legs){ delete local.legs[l.id]; }
+    await persist(); p._view = null; renderParlay(p);
+  });
+  drawEntry(p);
+}
+
+function drawEntry(p){
+  const w = Number(document.getElementById("ewk").value);
+  document.getElementById("entryfields").innerHTML = p.legs.map(l => {
+    const rec = S(l.id).weeks[w] || {};
+    const bye = isBye(l, w);
+    const cur = S(l.id).inj || "";
+    return '<div class="field"><div class="fr">' +
+      '<label for="in_' + l.id + '" style="color:' + l.color + '">' + l.who + '<em style="color:var(--dim)">' + l.stat + (bye ? " &middot; bye week" : "") + '</em></label>' +
+      '<input class="opp" type="text" id="op_' + l.id + '" placeholder="opp" value="' + esc(rec.opp || (SCHED[l.team] && SCHED[l.team][w]) || "") + '">' +
+      '<select class="injsel" id="ij_' + l.id + '" title="status">' +
+        ["","Q","D","O","IR","PUP"].map(s => '<option value="' + s + '"' + ((rec.inj !== undefined ? rec.inj : cur) === s ? ' selected' : '') + '>' + (s || "OK") + '</option>').join("") + '</select>' +
+      '<input type="number" step="any" min="0" id="in_' + l.id + '" value="' + (typeof rec.val === "number" ? rec.val : "") + '" placeholder="' + (bye ? "bye" : "0") + '"' + (bye ? ' disabled' : '') + '>' +
+      '</div>' +
+      '<textarea id="nt_' + l.id + '" placeholder="How he played and why: targets, coverage attacked, what the defense gave up">' + esc(rec.note || "") + '</textarea>' +
+      '</div>';
+  }).join("");
+}
+
+async function saveWeek(p){
+  const w = Number(document.getElementById("ewk").value);
+  const err = document.getElementById("err"), ok = document.getElementById("ok");
+  err.style.display = "none"; ok.style.display = "none";
+  let any = false;
+  const pending = [];
+  for(const l of p.legs){
+    const raw = document.getElementById("in_" + l.id).value.trim();
+    const oppv = document.getElementById("op_" + l.id).value.trim();
+    const inj = document.getElementById("ij_" + l.id).value;
+    const note = document.getElementById("nt_" + l.id).value.trim();
+    const rec = Object.assign({}, S(l.id).weeks[w] || {});
+    if(oppv) rec.opp = oppv;
+    rec.inj = inj;
+    if(note) rec.note = note; else delete rec.note;
+    if(raw !== ""){
+      const v = Number(raw);
+      if(!isFinite(v) || v < 0){ err.textContent = "Enter 0 or more for " + l.who + "."; err.style.display = "block"; return; }
+      rec.val = v; any = true;
+    }
+    pending.push([l, rec, inj]);
+  }
+  if(!any){ err.textContent = "Enter at least one stat line. Use 0 for a game he played without production or sat out."; err.style.display = "block"; return; }
+  for(const [l, rec, inj] of pending){
+    if(!local.legs[l.id]) local.legs[l.id] = { weeks:{} };
+    if(!local.legs[l.id].weeks) local.legs[l.id].weeks = {};
+    local.legs[l.id].weeks[w] = rec;
+    local.legs[l.id].inj = inj;
+    if(!inj) local.legs[l.id].injNote = "";
+  }
+  await persist();
+  ok.style.display = "block";
+  p._view = null;
+  renderParlay(p);
+  window.scrollTo({top:0});
+}
+
+/* ---------- routing (in-page only, no hash) ---------- */
+function openSlip(id){
+  const p = PARLAYS.find(x => x.id === id);
+  if(p){ renderParlay(p); window.scrollTo({top:0}); }
+}
+function route(){ renderHome(); }
+load();
+</script>
