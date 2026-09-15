@@ -301,6 +301,11 @@ function compute(leg){
   }
 
   const flat = target / GAMES;
+  // 2026 form: this season's rate, regressed toward last season's over a 4-game prior
+  // so one outlier week does not swing the read while the sample is tiny.
+  const PRIOR = 4;
+  const seasonRate = played > 0 ? cur / played : null;
+  const formRate = played > 0 ? (cur + leg.ref.rate * PRIOR) / (played + PRIOR) : leg.ref.rate;
   let req = null, proj = null, cushion = 0, state = "live", badge = "Live";
   if(leg.dir === "over"){
     req = remaining > 0 ? (target - cur) / remaining : null;
@@ -309,7 +314,7 @@ function compute(leg){
     if(cur >= target){ state = "clear"; badge = "Cashed"; }
     else if(remaining === 0){ state = "strain"; badge = "Missed"; }
     else {
-      const ratio = req / leg.ref.rate;
+      const ratio = req / formRate;
       state = ratio < 0.85 ? "clear" : ratio > 1.10 ? "strain" : "live";
       badge = state === "clear" ? "Comfortable" : state === "strain" ? "Strained" : "Live";
     }
@@ -321,12 +326,12 @@ function compute(leg){
     if(cur > target){ state = "strain"; badge = "Missed"; }
     else if(remaining === 0){ state = "clear"; badge = "Cashed"; }
     else {
-      const ratio = req / leg.ref.rate;
+      const ratio = req / formRate;
       state = ratio > 1.15 ? "clear" : ratio < 0.90 ? "strain" : "live";
       badge = state === "clear" ? "Comfortable" : state === "strain" ? "Strained" : "Live";
     }
   }
-  return {kind:"pace", played, cur, remaining, target, flat, req, proj, cushion, state, badge};
+  return {kind:"pace", played, cur, remaining, target, flat, req, proj, cushion, state, badge, formRate, seasonRate};
 }
 
 function pressure(leg){ // higher = tighter; used for headline + home dots
@@ -334,7 +339,8 @@ function pressure(leg){ // higher = tighter; used for headline + home dots
   if(c.kind === "binary") return c.hit ? 0 : 1.0 + (17 - c.remaining) / 17;
   if(c.badge === "Cashed") return 0;
   if(c.badge === "Missed") return 9;
-  return leg.dir === "over" ? c.req / leg.ref.rate : leg.ref.rate / c.req;
+  const base = c.formRate || leg.ref.rate;
+  return leg.dir === "over" ? c.req / base : base / c.req;
 }
 const stateColor = s => s === "clear" ? "var(--clear)" : s === "strain" ? "var(--strain)" : "var(--live)";
 
@@ -373,8 +379,11 @@ function legHTML(p, leg, wkView){
       '<dl class="grid">' +
         '<div class="cell"><dt>Cushion vs flat pace</dt><dd class="num">' + (c.played ? (c.cushion>=0?"+":"") + fmt(c.cushion, leg.dec==2?1:0) : "\u2014") + '</dd></div>' +
         '<div class="cell"><dt>Projected finish</dt><dd class="num">' + (c.proj===null ? "\u2014" : fmt(c.proj, leg.dec==2?1:0)) + '</dd></div>' +
-        '<div class="cell"><dt>' + leg.ref.label + '</dt><dd class="num">' + fmt(leg.ref.rate, leg.dec) + '</dd></div>' +
-        (leg.alt ? '<div class="cell"><dt>' + leg.alt.label + '</dt><dd class="num">' + fmt(leg.alt.rate, leg.dec) + '</dd></div>' : '<div class="cell"><dt>Games remaining</dt><dd class="num">' + c.remaining + '</dd></div>') +
+        (c.played
+          ? '<div class="cell"><dt>2026 form</dt><dd class="num">' + fmt(c.formRate, leg.dec) + '</dd></div>' +
+            '<div class="cell"><dt>2026 raw rate</dt><dd class="num">' + fmt(c.seasonRate, leg.dec) + '</dd></div>'
+          : '<div class="cell"><dt>' + leg.ref.label + '</dt><dd class="num">' + fmt(leg.ref.rate, leg.dec) + '</dd></div>' +
+            (leg.alt ? '<div class="cell"><dt>' + leg.alt.label + '</dt><dd class="num">' + fmt(leg.alt.rate, leg.dec) + '</dd></div>' : '<div class="cell"><dt>Games left</dt><dd class="num">' + c.remaining + '</dd></div>')) +
       '</dl>';
   } else {
     const pct = Math.min(100, (c.cur / c.target) * 100);
@@ -390,8 +399,11 @@ function legHTML(p, leg, wkView){
       '<dl class="grid">' +
         '<div class="cell"><dt>Room vs flat budget</dt><dd class="num">' + (c.played ? (c.cushion>=0?"+":"") + fmt(c.cushion, 0) : "\u2014") + '</dd></div>' +
         '<div class="cell"><dt>Projected finish</dt><dd class="num">' + (c.proj===null ? "\u2014" : fmt(c.proj, 0)) + '</dd></div>' +
-        '<div class="cell"><dt>' + leg.ref.label + '</dt><dd class="num">' + fmt(leg.ref.rate, leg.dec) + '</dd></div>' +
-        (leg.alt ? '<div class="cell"><dt>' + leg.alt.label + '</dt><dd class="num">' + fmt(leg.alt.rate, leg.dec) + '</dd></div>' : '') +
+        (c.played
+          ? '<div class="cell"><dt>2026 form</dt><dd class="num">' + fmt(c.formRate, leg.dec) + '</dd></div>' +
+            '<div class="cell"><dt>2026 raw rate</dt><dd class="num">' + fmt(c.seasonRate, leg.dec) + '</dd></div>'
+          : '<div class="cell"><dt>' + leg.ref.label + '</dt><dd class="num">' + fmt(leg.ref.rate, leg.dec) + '</dd></div>' +
+            (leg.alt ? '<div class="cell"><dt>' + leg.alt.label + '</dt><dd class="num">' + fmt(leg.alt.rate, leg.dec) + '</dd></div>' : '')) +
       '</dl>';
   }
 
@@ -467,7 +479,8 @@ function renderParlay(p){
   let tightTxt;
   if(tight.c.kind === "binary") tightTxt = "still waiting on a single play";
   else if(tight.leg.dir === "under") tightTxt = "can afford only " + fmt(tight.c.req, tight.leg.dec) + " " + tight.leg.unit + " a game";
-  else tightTxt = "needing " + fmt(tight.c.req, tight.leg.dec) + " " + tight.leg.unit + " a game against a " + tight.leg.ref.blurb + " baseline";
+  else tightTxt = "needing " + fmt(tight.c.req, tight.leg.dec) + " " + tight.leg.unit + " a game against " +
+    (tight.c.played ? "2026 form of " + fmt(tight.c.formRate, tight.leg.dec) : "a " + tight.leg.ref.blurb + " baseline");
   html += p.resolved.map(r => '<div class="resolved"><b>' + r.who + '</b> ' + r.text + '</div>').join("");
   html += '<div class="headline">' + (missed ? '<b style="color:var(--strain)">Slip is busted.</b> ' : (played === 0 ? "Nothing logged yet, every leg is priced off 2025 form. " : alive + " of " + p.legs.length + " legs still open. ")) +
     "Tightest right now: <b style=\"color:" + tight.leg.color + "\">" + tight.leg.who + "</b>, " + tightTxt + ".</div>";

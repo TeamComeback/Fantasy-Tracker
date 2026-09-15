@@ -1,22 +1,124 @@
 {
-  "updated": "2026-09-10",
-  "throughWeek": 0,
-  "_shape": "legs.<legId>.weeks.<weekNumber> = { val, opp, inj, note }. Any field omitted falls back to the schedule baked into index.html. Your own edits on the device always win over anything published here.",
-  "_legIds": [
-    "bowers", "herbert", "moore", "flowers",
-    "evans", "lamar", "bijan", "johnston", "dak", "waddle",
-    "nacua", "fox", "chase", "zayrush", "mclaurin", "dart"
-  ],
+  "updated": "2026-09-15",
+  "throughWeek": 1,
+  "_shape": "legs.<legId>.weeks.<weekNumber> = { val, opp, inj, note }. Omitted fields fall back to the schedule baked into index.html. Device edits always win over anything published here.",
+  "_legIds": ["bowers","herbert","moore","flowers","evans","lamar","bijan","johnston","dak","waddle","nacua","fox","chase","zayrush","mclaurin","dart"],
   "legs": {
     "bowers": {
       "inj": "O",
-      "injNote": "Meniscus trim Sep 8, same knee as last year. Expected to miss one or two games.",
-      "weeks": {}
+      "injNote": "Meniscus trim Sep 8. Ruled out Week 1. Schefter reported a one-to-two game absence; Kubiak has refused to give a timeline. Week 2 at the Chargers is genuinely uncertain.",
+      "weeks": {
+        "1": { "val": 0, "opp": "vs MIA", "inj": "O",
+          "note": "Did not play. Ruled out Friday after the Tuesday meniscus trim in Dallas - the injury happened in camp but went undiagnosed until the week before the opener. Las Vegas won 27-13 anyway, with Michael Mayer taking the primary tight end role and Ashton Jeanty absorbing checkdown volume. Nothing about the game itself is informative; this is purely a lost week off the calendar." }
+      }
+    },
+    "herbert": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 1, "opp": "vs ARI", "inj": "",
+          "note": "17-of-27 for 209 yards, one TD, one INT, three sacks in a 26-14 home loss. The lone score was an 8-yard strike to Ladd McConkey, who then left with a chest injury. Mike LaFleur's defense sat in two-high and made Herbert work underneath - 7.7 yards per attempt is not a McDaniel-offense number. The rebuilt line still allowed three sacks and a blocked punt broke the game open. One pass TD while trailing throughout is the worry: this leg needs red-zone volume, not just yardage." }
+      }
+    },
+    "moore": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 100, "opp": "at HOU", "inj": "",
+          "note": "Five catches on a team-high eight targets for 100 yards and a 43-yard TD in a 36-31 win. Exactly the debut this leg needed. Houston's secondary was supposed to be a strength and Buffalo gashed it - the score came when safety Reed Blankenship jumped the route and missed, leaving nobody behind him. Moore also drew a 46-yard PI in the end zone that set up another TD: uncounted yardage that still shows Allen hunting him deep. Leading the team in targets is the key signal after a 16% target share in Chicago. Went to the medical tent late but returned." }
+      }
+    },
+    "flowers": {
+      "inj": "Q",
+      "injNote": "Hamstring aggravation, day-to-day per Rapoport, MRI pending. Not considered serious - reportedly would have returned in a playoff game. Questionable for Week 2 vs New Orleans.",
+      "weeks": {
+        "1": { "val": 1, "opp": "at IND", "inj": "Q",
+          "note": "Five catches for a career-high 150 yards and a 54-yard catch-and-run TD, all in the first half. He beat Indianapolis on crossers against a defense that surrendered 506 total yards; the score was a sidearm throw over the middle he turned into a sprint through a secondary with no deep help. The TD is banked, which matters enormously for a leg needing six. But he tweaked the hamstring on that very play and did not return. He had already missed two weeks of camp with it." }
+      }
+    },
+    "evans": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 1, "opp": "at LAR", "inj": "",
+          "note": "Six catches on seven targets for 49 yards and a 2-yard fade TD in the 27-7 win in Melbourne - his 109th career touchdown catch and first as a 49er. Shanahan said afterward it was his first time having a receiver he could simply throw a fade to in the red zone, which is precisely the usage this leg is built on. Five of six catches came in the first half converting first downs. Yardage was modest because San Francisco leaned on 174 rushing yards once ahead, but the red-zone role appeared immediately." }
+      }
+    },
+    "lamar": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 364, "opp": "at IND", "inj": "",
+          "note": "17-of-25 for 324 passing plus 40 rushing and a rushing TD - 364 combined in a 41-23 win, with 229 of it in the first half. Declan Doyle's offense shredded a Colts defense that could not cover: 12.2 yards per attempt, the 54-yarder to Flowers, another 50-plus completion in the third. Baltimore topped 500 total yards for the first time since October 2024. The caveat: Henry's 144 and three scores meant Jackson needed only 25 attempts and sat on a lead. Losing Flowers removes the receiver who produced nearly half his passing yardage." }
+      }
+    },
+    "bijan": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 8, "opp": "at PIT", "inj": "",
+          "note": "Eight catches on a team-high 10 targets for 90 yards and a 23-yard TD, plus 21 carries for 83, in a 20-13 loss. He accounted for 173 of Atlanta's 238 total yards; no other Falcon had more than four targets. Third-string QB Cooper Rush played through back spasms, which funneled everything to the safety valve - discount the ceiling slightly, since better quarterback play spreads the ball. But Stefanski clearly designed for him, and eight catches against a Steelers defense that allowed two receiving TDs to backs all last season is real. Two fumbles, neither lost." }
+      }
     },
     "johnston": {
+      "inj": "",
+      "injNote": "",
+      "weeks": {
+        "1": { "val": 0, "opp": "vs ARI", "inj": "",
+          "note": "No touchdown. He cleared the questionable tag and played, but the defining moment was a third-and-long pass going straight through his hands in the fourth - the drive that ended in a blocked punt and the Cardinals score that broke the game. McConkey took the only receiving TD and the Chargers reached the end zone twice all afternoon. Arizona's two-high shell kept everything in front, which strangles the deep-shot role Johnston was supposed to grow into. The drops have not gone away." }
+      }
+    },
+    "dak": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 175, "opp": "at NYG", "inj": "",
+          "note": "22-of-34 for 175, two TDs and an INT in a 28-20 loss - 5.1 yards per attempt. The Giants controlled the game by controlling the ball: 36:40 of possession to Dallas's 23:20, including an eight-minute third-quarter drive. Dak cannot accumulate yardage on snaps he never gets, and that is the real threat here. Pickens was invisible with three for 28 and two drops. Dallas managed 244 total yards on 52 plays. Volume is the entire thesis of this bet and volume is exactly what New York took away." }
+      }
+    },
+    "waddle": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 2, "opp": "at KC", "inj": "",
+          "note": "One catch on three targets for two yards in a 31-10 loss at Arrowhead - last in receptions and yards among every Denver player who caught a pass. One incompletion was a third-down drop early in the third. Kansas City's rebuilt secondary took him away and Bo Nix never went back. Engram led the team with four for 43 and a score, Bryant had four for 42, and Denver's whole corps managed 131 yards. The target-competition concern showed up in the most extreme form possible: he was the fourth option, not the second." }
+      }
+    },
+    "nacua": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 0, "opp": "vs SF", "inj": "",
+          "note": "No rushing touchdown, and no carries at all. Five catches for 74 yards to lead the Rams in a 27-7 loss. Stafford was dreadful (15-of-25, 155 yards, an interception on a deep ball meant for Nacua) and Los Angeles trailed from the second quarter on, which is the wrong script for gadget work. They were also stuffed on fourth-and-goal from inches. Sixteen games left to get one, so nothing is lost - but this needed a McVay comfortable enough to get cute and he never was." }
+      }
+    },
+    "fox": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 0, "opp": "vs NO", "inj": "",
+          "note": "No pass attempt. Detroit won 31-30 in a game that stayed close throughout, which is the situation least likely to produce a fake punt - Campbell dials these up from comfort or desperation, not in a one-score back-and-forth. Sixteen chances remain and this leg costs nothing until the season runs out." }
+      }
+    },
+    "chase": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 0, "opp": "vs TB", "inj": "",
+          "note": "No carries. Two catches for 12 yards on four targets in a 33-27 win, finishing behind Gesicki, Higgins and Chase Brown in targets - a genuinely strange afternoon for the best receiver in football. Cincinnati won on defense, recovering four Tampa Bay fumbles including one returned 27 yards for a score, so the offense never needed the gadget package. Burrow threw for 254 with one TD. This leg needs Cincinnati comfortable and creative; they were neither, they just took the ball away." }
+      }
+    },
+    "zayrush": {
       "inj": "Q",
-      "injNote": "Lower body, questionable for Week 1.",
-      "weeks": {}
+      "injNote": "Hamstring aggravation, day-to-day, MRI pending. Questionable for Week 2 vs New Orleans.",
+      "weeks": {
+        "1": { "val": 0, "opp": "at IND", "inj": "Q",
+          "note": "No carries. He was on the field barely a half before the hamstring, and Doyle's early usage did not include the end-around package Monken ran with him. Baltimore rushed 37 times for 202 yards and gave 24 of those to Derrick Henry. Even healthy, the early evidence is that the new coordinator is not using him as a runner - which is the entire premise of this leg." }
+      }
+    },
+    "mclaurin": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 0, "opp": "at PHI", "inj": "",
+          "note": "No touchdown. Two catches for 14 yards in a 24-22 loss - and both Washington receiving scores went to Stefon Diggs and rookie Antonio Williams, who caught four for 64. That is the exact scenario worth worrying about when Washington signed Diggs in August. Jayden Daniels was 6-of-16 for 43 yards in the first half against a Philadelphia defense that finished fifth against receivers last year. McLaurin did convert a critical fourth down late, so the trust is there on money downs. The red-zone work is not." }
+      }
+    },
+    "dart": {
+      "inj": "",
+      "weeks": {
+        "1": { "val": 230, "opp": "vs DAL", "inj": "",
+          "note": "Worst possible result for an under. 23-of-29 for 230 with three TDs, no picks, a 134.2 rating and 54 rushing yards - the first QB in NFL history to open a season with three passing scores, 50 rushing yards and a 130-plus rating. Dallas had no answer: Isaiah Likely caught all eight targets for 78 and two scores, Nabers went 69 on six in his return from the ACL. The saving grace is that New York ran for 165 and controlled the clock, so this was efficiency rather than volume - only 29 attempts. If they keep winning that way the attempts stay low. But 230 is 46 yards over budget in week one." }
+      }
     }
   }
 }
