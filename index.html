@@ -252,7 +252,8 @@ function rebuild(){
     store.legs[l.id] = {
       weeks,
       inj:     o.inj     !== undefined ? o.inj     : (r.inj     !== undefined ? r.inj     : (l.inj || "")),
-      injNote: o.injNote !== undefined ? o.injNote : (r.injNote !== undefined ? r.injNote : (l.injNote || ""))
+      injNote: o.injNote !== undefined ? o.injNote : (r.injNote !== undefined ? r.injNote : (l.injNote || "")),
+      settled: o.settled !== undefined ? o.settled : (r.settled !== undefined ? r.settled : "")
     };
   }
 }
@@ -297,7 +298,10 @@ function compute(leg){
     const hit = cur >= 1;
     const hitWeek = hit ? loggedWeeks(leg.id).find(w => S(leg.id).weeks[w].val >= 1) : null;
     const state = hit ? "clear" : remaining === 0 ? "strain" : remaining >= 8 ? "live" : "strain";
-    return {kind:"binary", played, cur, remaining, target, hit, hitWeek, state, badge: hit ? "Cashed" : remaining === 0 ? "Missed" : "Not yet"};
+    const bx = S(leg.id).settled;
+    const bState = bx === "win" ? "clear" : bx === "loss" ? "strain" : state;
+    const bBadge = bx === "win" ? "Locked" : bx === "loss" ? "Dead" : (hit ? "Cashed" : remaining === 0 ? "Missed" : "Not yet");
+    return {kind:"binary", played, cur, remaining, target, hit, hitWeek, state:bState, badge:bBadge, settled:bx};
   }
 
   const flat = target / GAMES;
@@ -331,14 +335,17 @@ function compute(leg){
       badge = state === "clear" ? "Comfortable" : state === "strain" ? "Strained" : "Live";
     }
   }
-  return {kind:"pace", played, cur, remaining, target, flat, req, proj, cushion, state, badge, formRate, seasonRate};
+  const sx = S(leg.id).settled;
+  if(sx === "win"){ state = "clear"; badge = "Locked"; }
+  else if(sx === "loss"){ state = "strain"; badge = "Dead"; }
+  return {kind:"pace", played, cur, remaining, target, flat, req, proj, cushion, state, badge, formRate, seasonRate, settled:sx};
 }
 
 function pressure(leg){ // higher = tighter; used for headline + home dots
   const c = compute(leg);
   if(c.kind === "binary") return c.hit ? 0 : 1.0 + (17 - c.remaining) / 17;
-  if(c.badge === "Cashed") return 0;
-  if(c.badge === "Missed") return 9;
+  if(c.badge === "Cashed" || c.badge === "Locked") return 0;
+  if(c.badge === "Missed" || c.badge === "Dead") return 9;
   const base = c.formRate || leg.ref.rate;
   return leg.dir === "over" ? c.req / base : base / c.req;
 }
@@ -439,8 +446,8 @@ function renderHome(){
   let stake = 0, pay = 0, open = 0, dead = 0;
   for(const p of PARLAYS){
     const cs = p.legs.map(l => ({leg:l, c:compute(l)}));
-    const alive = cs.filter(x => x.c.badge !== "Cashed" && x.c.badge !== "Missed").length;
-    const missed = cs.filter(x => x.c.badge === "Missed").length;
+    const alive = cs.filter(x => !["Cashed","Missed","Locked","Dead"].includes(x.c.badge)).length;
+    const missed = cs.filter(x => x.c.badge === "Missed" || x.c.badge === "Dead").length;
     const tight = cs.slice().sort((a,b)=> pressure(b.leg) - pressure(a.leg))[0];
     stake += parseFloat(p.stake.replace("$","")); pay += parseFloat(p.payout.replace("$",""));
     if(missed) dead++; else open++;
@@ -465,8 +472,8 @@ function renderParlay(p){
   const nowWk = currentWeek();
   const wkView = p._view || nowWk;
   const cs = p.legs.map(l => ({leg:l, c:compute(l)}));
-  const alive = cs.filter(x => x.c.badge !== "Cashed" && x.c.badge !== "Missed").length;
-  const missed = cs.filter(x => x.c.badge === "Missed").length;
+  const alive = cs.filter(x => !["Cashed","Missed","Locked","Dead"].includes(x.c.badge)).length;
+  const missed = cs.filter(x => x.c.badge === "Missed" || x.c.badge === "Dead").length;
   const tight = cs.slice().sort((a,b)=> pressure(b.leg) - pressure(a.leg))[0];
   const played = Math.max(...p.legs.map(l => loggedWeeks(l.id).length), 0);
 
