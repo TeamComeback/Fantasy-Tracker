@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-28",
-  "throughWeek": 3,
+  "updated": "2026-10-06",
+  "throughWeek": 4,
   "_shape": "legs.<legId>.weeks.<weekNumber> = { val, opp, inj, note }. Omitted fields fall back to the schedule baked into index.html. A leg may also carry settled:'win' or settled:'loss' once the outcome is mathematically locked. Device edits always win over anything published here.",
   "_legIds": [
     "bowers",
@@ -42,6 +42,12 @@
           "opp": "at NO",
           "inj": "",
           "note": "The debut this leg needed. Ten catches on 13 targets for 116 yards and the game-winning 4-yard touchdown in the fourth quarter of a 35-27 win at New Orleans - he led Las Vegas in receptions, yards and targets in his first game back from the meniscus trim. Reporting after the game described him as clearly fully recovered, with no snap restriction evident. One outing at 116 does not erase two lost weeks: he still needs 57.9 a game against 2026 form of 49. But a 13-target debut says the role is exactly what it was supposed to be, and the Raiders are 3-0."
+        },
+        "4": {
+          "val": 86,
+          "opp": "vs KC",
+          "inj": "",
+          "note": "Six catches on 11 targets for 86 and a late touchdown in a 30-27 loss to Kansas City. Second straight game with double-digit targets since the knee, which settles the usage question - across two games back he is 16 catches on 24 targets for 202 and two scores. The required rate has fallen from 61.7 at his low point to 55.7, and his 2026 form of 53.6 is now within shouting distance of the number. Still needs to outrun two zeroes, but this is the first week the leg has read Live rather than Strained since the opener."
         }
       }
     },
@@ -65,11 +71,17 @@
           "opp": "at BUF",
           "inj": "",
           "note": "One passing touchdown for the third consecutive week - a 1-yard throw to K. Mitchell in the first quarter - plus 226 yards and an interception in a 24-16 loss in Buffalo. The pattern is now a trend rather than noise. Los Angeles reached the red zone seven times and came away with one touchdown and three field goals, which is the entire problem in a sentence. They are 0-3 and Dicker has outscored the offense. He needs 1.64 a game from here against form of 1.36, and three weeks of evidence says the red-zone conversion is not there."
+        },
+        "4": {
+          "val": 1,
+          "opp": "at SEA",
+          "inj": "",
+          "note": "One passing touchdown for the fourth consecutive week - a 9-yarder to Kimani Vidal - with 189 yards and two interceptions in a 30-23 loss. He was 5-of-15 for 36 yards with a 4.8 rating at halftime before a better second half, and got strip-sacked late. Los Angeles is 0-4. Four weeks, four games with exactly one passing score, against a leg that needs 1.69 a game from here versus form of 1.31. The 2025 version of this offense threw 26 touchdowns; this one is on pace for 17."
         }
       }
     },
     "moore": {
-      "inj": "",
+      "inj": "Q",
       "weeks": {
         "1": {
           "val": 100,
@@ -88,13 +100,19 @@
           "opp": "vs LAC",
           "inj": "",
           "note": "Played through the AC joint sprain and led Buffalo in targets and receiving yards: six catches on ten targets for 67 in a 24-16 win. No touchdown, but Buffalo scored all three on the ground and Allen threw for only 204 with two picks, so there was nothing to take. The important signal is availability plus a team-high ten targets one week after a shoulder injury - he is the clear number one and the shoulder did not limit the workload. Required rate 47.1 a game, essentially dead level with his 2026 form of 46.8."
+        },
+        "4": {
+          "val": 11,
+          "opp": "vs NE",
+          "inj": "Q",
+          "note": "One catch for 11 before the shoulder went again in the second quarter of a 29-26 home loss to New England. That is two of four games cut short by the same AC joint. The injury is reportedly not long-term, but the pattern is now the problem rather than any single absence - and Keon Coleman putting up 116 and a touchdown in relief is the kind of thing that changes a target hierarchy. Required rate climbs to 49.9 a game against form of 42.3."
         }
       },
-      "injNote": ""
+      "injNote": "Aggravated the same left shoulder in Week 4 and exited in the second quarter. Schefter reports it is not considered long-term, but Week 5 against the Rams is uncertain. Keon Coleman went for 116 and a score in his absence."
     },
     "flowers": {
       "inj": "",
-      "injNote": "",
+      "injNote": "Reportedly managed a minor hamstring issue through the Week 4 game without restriction. No designation carried into Week 5.",
       "weeks": {
         "1": {
           "val": 1,
@@ -113,11 +131,17 @@
           "opp": "at DAL",
           "inj": "",
           "note": "Back on the field and productive - five catches for 84 yards in a 34-31 win at Dallas, including a 27-yard grab that set up Tyler Loop's 56-yard game-winner. No touchdown, though, and that is the whole leg. Lamar threw two scores and neither went his way. He has now played two games and scored once; needing five in fourteen means 0.36 a game against form of 0.31. The hamstring appears behind him, which was the bigger worry, but the red-zone problem that defined his 2025 has not changed."
+        },
+        "4": {
+          "val": 1,
+          "opp": "vs TEN",
+          "inj": "",
+          "note": "Eight catches on ten targets for 118 and a 19-yard touchdown in a 24-18 win, leading Baltimore in catches, targets and yards with explosive gains of 52 and 23. Second score of the season and it moves the whole leg: he needs four in thirteen games now, 0.31 a game against form of 0.40, which flips this from Strained to Comfortable. He is on a 1,000-yard pace and healthy enough to handle ten targets. The one asterisk is that he did this with Lamar for a half and Tyler Huntley for a half."
         }
       }
     },
     "evans": {
-      "inj": "D",
+      "inj": "Q",
       "weeks": {
         "1": {
           "val": 1,
@@ -136,12 +160,18 @@
           "opp": "vs ARI",
           "inj": "D",
           "note": "Banked the touchdown, then got hurt. Three catches for 34 and a score in a 36-30 win over Arizona before leaving on a cart with a rib injury on a non-contact play. The touchdown matters enormously - two in three games against a leg needing seven - but a projected 3-6 week absence could cost him a third of the season. Through three weeks he is 12-of-13 catching the ball, which is remarkable efficiency, and the red-zone fade role is exactly as advertised. The question is now purely how many games he gets."
+        },
+        "4": {
+          "val": 0,
+          "opp": "vs DEN",
+          "inj": "Q",
+          "note": "No touchdown, but the far bigger news is that he played at all. Five catches on eight targets for 76 in a 24-14 win, nine days after being carted off - Shanahan said he was not optimistic Evans would suit up and was impressed he did. A 17-yard catch-and-run in the fourth set up the clinching score. The 3-6 week absence that looked likely has turned into zero games missed, which is worth more to this leg than any single touchdown. Needs 0.38 a game against form of 0.44."
         }
       },
-      "injNote": "Rib/oblique strain suffered Week 3 on a non-contact play; left on a cart. One beat writer projects 3-6 weeks, and San Francisco may use IR if it reaches four games. No official timeline yet."
+      "injNote": "Rib injury believed to be a fracture based on teammate comments. Played through it in Week 4 with the staff limiting his exposure and Purdy placing throws to protect him. No IR."
     },
     "lamar": {
-      "inj": "",
+      "inj": "Q",
       "weeks": {
         "1": {
           "val": 364,
@@ -160,8 +190,15 @@
           "opp": "at DAL",
           "inj": "",
           "note": "186 passing and 50 rushing on six carries for 236 combined in a 34-31 win at Dallas, with two touchdown passes and no interceptions. Modest yardage in a game Baltimore won on Tyler Loop's 56-yarder as time expired, and the 50 rushing yards are the encouraging part - that is his best ground game of the year and a sign the legs are back after a career-low 67 carries in 2025. 869 banked against a flat pace of 671 means he is 198 ahead. Needs 209 a game against form of 252."
+        },
+        "4": {
+          "val": 242,
+          "opp": "vs TEN",
+          "inj": "Q",
+          "note": "222 passing and 20 rushing for 242 combined in barely a half - 15-of-20 with two touchdowns before his ankle rolled under a Tennessee defender on a sack as the half expired. He did not return and Tyler Huntley went 8-of-9 for 63 the rest of the way, which tells you how much the offense narrows without him. He is day-to-day with optimism for Sunday night. 1,111 banked against a flat pace of 894 means he is 217 ahead, and the required 207 a game sits well under his form of 250. The cushion is real; the ankle is the only thing that matters."
         }
-      }
+      },
+      "injNote": "Ankle rolled under a defender on a sack at the end of the first half. Rapoport reports he is believed day-to-day, to be monitored and treated through the week. Optimism he returns for Sunday night at Atlanta."
     },
     "bijan": {
       "inj": "",
@@ -183,6 +220,12 @@
           "opp": "at GB",
           "inj": "",
           "note": "A monster game that did nothing for this leg: 29 carries for 194 yards and two rushing touchdowns in a 35-14 rout of Green Bay, but only two catches for 19 on limited targets. That is the concern in miniature - the receiving usage has gone 10 targets, then 4, then 2 as Atlanta has gotten healthier and more run-dominant under Stefanski. Thirteen catches through three weeks projects to 74, still above the line, and the required 3.79 a game sits under his form of 4.51. Comfortable on paper, but the direction of travel is wrong."
+        },
+        "4": {
+          "val": 1,
+          "opp": "at NO",
+          "inj": "",
+          "note": "Nineteen carries for 145 and two rushing touchdowns in a 45-24 rout, and one catch for two yards. The receiving usage has now gone 10 targets, 4, 2, 1 - a clean downward line as Atlanta has become one of the most run-heavy teams in football. Fourteen catches through four games projects to 60, under the 65.5 line for the first time all season. Needs 4.00 a game against form of 4.08, so this has quietly slipped from Comfortable to a genuine coin flip. He is playing superb football and it is actively hurting this leg."
         }
       }
     },
@@ -207,6 +250,12 @@
           "opp": "at BUF",
           "inj": "",
           "note": "Three catches on six targets for 40 yards, no touchdown. Through three games he has three receptions or fewer on 17 total targets - the volume is there and the conversion is not. He did make a one-handed grab under pressure, so the talent flashes, but McConkey and Tre Harris are both taking meaningful work and the Chargers converted one of seven red-zone trips. Needs 0.43 touchdowns a game against form of 0.33. This is the leg in New Systems that has gone from comfortable to strained in three weeks."
+        },
+        "4": {
+          "val": 0,
+          "opp": "at SEA",
+          "inj": "",
+          "note": "One catch for 44 yards. Through four games he has seven receptions on 23 targets - a 30 percent catch rate - and zero touchdowns against a line of 5.5. The Chargers are 0-4 and Herbert's lone score went to a running back. The required 0.46 a game against form of 0.29 makes this the worst ratio in New Systems. Two straight 8-touchdown seasons bought this leg its credibility and four weeks have spent most of it."
         }
       }
     },
@@ -230,6 +279,12 @@
           "opp": "vs BAL",
           "inj": "",
           "note": "276 yards and a touchdown with no interceptions in a 34-31 home loss to Baltimore decided by a 56-yard field goal as time expired. Two straight weeks near 280 after the Week 1 famine, and 730 banked against a flat pace of 706 puts him just ahead. Dallas has now played three games decided by a combined 19 points, which means Prescott keeps throwing late - exactly the game script this leg wants. Needs 234 a game against form of 257."
+        },
+        "4": {
+          "val": 335,
+          "opp": "at HOU",
+          "inj": "",
+          "note": "32-of-45 for 335 and a touchdown in a 34-30 win at Houston, with 28 points coming in the second half. Three straight weeks over 275 after the Week 1 famine, and 1,065 banked against a flat pace of 941 puts him 124 ahead. Dallas has now played four one-score games and keeps throwing late, which is precisely the script this leg wants. Needs 226 a game against form of 267 - the most comfortable yardage leg across all three slips."
         }
       }
     },
@@ -253,11 +308,17 @@
           "opp": "vs LAR",
           "inj": "",
           "note": "Two catches for 10 yards on seven targets in a 30-26 win over the Rams - a bad box score that hides a good underlying week. He ran a route on 82 percent of dropbacks, played 70 percent of snaps, and his seven targets carried 77 air yards, meaning Denver was throwing at him downfield and missing. He also made a spectacular catch on a two-point conversion. Volume and intent are both there; the completions are not. 150 banked, needs 55.4 a game against form of 53.9."
+        },
+        "4": {
+          "val": 35,
+          "opp": "at SF",
+          "inj": "",
+          "note": "Five catches on six targets for 35 and his first touchdown as a Bronco, a 13-yard grab inside four minutes left of a 24-14 loss. The volume keeps coming - 26 targets through four weeks - but the yardage has been 2, 138, 10, 35, which is one real game and three quiet ones. RotoWire's framing is right: the chemistry with Nix is a work in progress. 185 banked, needing 56.9 a game against form of 51.6, so this slides back to Strained. He needs the Week 2 version to show up more than once a month."
         }
       }
     },
     "nacua": {
-      "inj": "D",
+      "inj": "",
       "weeks": {
         "1": {
           "val": 0,
@@ -276,9 +337,15 @@
           "opp": "at DEN",
           "inj": "O",
           "note": "Did not play, second straight inactive. He was listed doubtful on the Friday report and ruled out before Sunday night. Two full games missed from a leg that only needs one rushing score all season, and fourteen remain - so nothing is mathematically lost. But a soft-tissue injury this early that has now cost two weeks makes a jet-sweep package less likely the moment he returns, because the first thing a team takes away from a receiver coming back from a groin issue is the designed run."
+        },
+        "4": {
+          "val": 1,
+          "opp": "at PHI",
+          "inj": "",
+          "note": "Cashed. He returned from the hip and groin absence and took a 2-yard rushing touchdown in the second quarter of a 24-20 comeback win at Philadelphia, on top of nine catches for 125 on twelve targets. That is the whole leg - one rushing score all season - resolved in his first game back. McVay went to the goal-line handoff the moment he had him healthy, which is exactly the usage the bet was built on. Nothing left to sweat here."
         }
       },
-      "injNote": "Hip and groin. Inactive for the second straight week after being listed doubtful. No return timeline given; Davante Adams has absorbed the WR1 role in the interim."
+      "injNote": ""
     },
     "fox": {
       "inj": "",
@@ -300,11 +367,17 @@
           "opp": "vs NYJ",
           "inj": "",
           "note": "No pass attempt. Detroit won 31-24 over the Jets in a game they controlled without needing trickery. Three weeks, zero fake punts called. Fourteen chances remain and the leg costs nothing until they run out, but it is worth noting Campbell has not reached for one in any game state yet this season - comfortable, trailing, or close."
+        },
+        "4": {
+          "val": 0,
+          "opp": "at CAR",
+          "inj": "",
+          "note": "No pass attempt - verified against the Lions' own game recap, which covers the special teams unit and records only Jake Bates going 4-for-4 on field goals. Detroit lost 32-26 on Sunday night in a game that was close throughout, which has historically been the state least likely to produce a Campbell trick play. Four weeks, zero fake punts. Thirteen chances left and the leg costs nothing until they run out."
         }
       }
     },
     "chase": {
-      "inj": "",
+      "inj": "Q",
       "weeks": {
         "1": {
           "val": 0,
@@ -323,12 +396,19 @@
           "opp": "at PIT",
           "inj": "",
           "note": "No carries for the third straight week. Nine catches on twelve targets for 98 yards and a 3-yard touchdown in a 30-27 loss at Pittsburgh, so the receiving role is fully restored after the odd Week 1. But Cincinnati ran only 18 times all game, two of those Burrow scrambles, and the gadget package has not appeared once this season. Needing 0.86 yards a game against form of 1.09 still reads comfortable, and one sweep ends it. Three weeks of zero says nobody should assume the call is coming."
+        },
+        "4": {
+          "val": 0,
+          "opp": "vs JAC",
+          "inj": "Q",
+          "note": "One catch for four yards before his facemask was pulled at the end of the play in the second quarter; he went for a concussion check and did not return. No carries, so the rushing leg stays at zero through four weeks. The structural problem has not changed - Cincinnati has not called a single designed run for him all season - and now a protocol week sits on top of it, with a Week 6 bye behind it that could stretch any absence to a fortnight. Needs 0.92 yards a game against form of 0.95, which has drifted from Comfortable to Live."
         }
-      }
+      },
+      "injNote": "In the NFL concussion protocol after taking a facemask pull in Week 4. Zac Taylor calls him day-to-day. Cincinnati's bye is Week 6, so failing to clear by Week 5 means no game until Week 7."
     },
     "zayrush": {
       "inj": "",
-      "injNote": "",
+      "injNote": "Managed a minor hamstring issue through the Week 4 game. No designation into Week 5.",
       "weeks": {
         "1": {
           "val": 0,
@@ -347,11 +427,17 @@
           "opp": "at DAL",
           "inj": "",
           "note": "One carry for 20 yards - and it single-handedly changes the read on this leg. He played his first full game since the hamstring, caught five of six for 84 in the 34-31 win in Rio, and took an end-around for 20. That is the first evidence all season that Declan Doyle has kept some version of the Monken sweep package, and 20 yards on one touch is better than his career rate of roughly seven per carry. Twenty banked against a line of 55 means he needs 2.50 a game the rest of the way against 2026 form of 4.80 - this went from the most strained leg in the Fun slip to one of the safer ones on a single play. The caveat is obvious: one carry in three games is not a package, it is a call."
+        },
+        "4": {
+          "val": 0,
+          "opp": "vs TEN",
+          "inj": "",
+          "note": "No carries - checked against two independent box scores after last week's error, and both record receiving only. So the end-around in Rio stays a one-off rather than the start of a package, which was the open question. Twenty banked against a line of 55 still means he needs just 2.69 a game against 2026 form of 4.20, so the leg remains comfortable on the strength of that single play. It needs roughly two more carries like it across thirteen games."
         }
       }
     },
     "mclaurin": {
-      "inj": "",
+      "inj": "Q",
       "weeks": {
         "1": {
           "val": 0,
@@ -370,9 +456,15 @@
           "opp": "vs SEA",
           "inj": "",
           "note": "Finally. Six catches on nine targets for 77 yards and a 30-yard touchdown in a 33-31 upset of Seattle - and he led Washington in catches, targets and yards with Marcus Mariota starting for the injured Jayden Daniels. That is the opposite of what I expected: the worry was that losing Daniels would sink this leg, and instead McLaurin's best game came in Mariota's first start. Two straight weeks of nine targets says the role is real regardless of who is throwing. Still needs 0.36 a game against form of 0.31, so the badge stays tight, but the thesis just got a lot healthier."
+        },
+        "4": {
+          "val": 0,
+          "opp": "vs IND",
+          "inj": "O",
+          "note": "Did not play. He pulled a hamstring in Friday's practice and was inactive for the London game, a 30-13 loss to Indianapolis. Brutal timing - he had just broken through with his first touchdown in Mariota's debut and strung together consecutive nine-target games. One score banked, needing five in thirteen at 0.38 a game against form of 0.28. The one piece of good news in the background is that Jayden Daniels may return from the elbow in Week 5, which would reunite the pairing that produced thirteen touchdowns in 2024."
         }
       },
-      "injNote": ""
+      "injNote": "Hamstring injury sustained in Friday's practice; ruled out for the London game after being listed questionable. No return timeline announced. Jayden Daniels could return from the elbow in Week 5."
     },
     "dart": {
       "inj": "IR",
@@ -394,9 +486,15 @@
           "opp": "vs TEN",
           "inj": "IR",
           "note": "This leg is effectively decided. The Giants announced Dart will miss the rest of the regular season with the Week 2 knee injury, and Jameis Winston takes over for the remaining fifteen games. Dart finishes at 250 passing yards against an under of 3,124.5 - he would need to return and throw for 2,875 to lose it, which cannot happen. Winston went out and beat Tennessee 12-7 in his first start. Barring an unannounced reversal this is a winner, and it is the one leg in any of the three slips that no longer needs watching."
+        },
+        "4": {
+          "val": 0,
+          "opp": "vs ARI",
+          "inj": "IR",
+          "note": "Still locked. Winston won again, 36-24 over Arizona, and Dart remains out for the year at 250 passing yards against an under of 3,124.5. Nothing can move this leg."
         }
       },
-      "injNote": "Out for the remainder of the 2026 regular season with the knee injury suffered in Week 2. Jameis Winston starts the Giants' remaining 15 games. Harbaugh: 'There's no way to know. It just depends on the recovery.'",
+      "injNote": "Out for the remainder of the 2026 regular season. Jameis Winston has the job; he beat Arizona 36-24 in Week 4.",
       "settled": "win"
     }
   }
