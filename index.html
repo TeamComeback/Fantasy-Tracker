@@ -437,6 +437,17 @@ function legHTML(p, leg, wkView){
   '</div>';
 }
 
+// One-line pace for the tightest leg, shown on the home card so the week's worry is visible without opening the slip.
+function paceNote(t){
+  const c = t.c, l = t.leg;
+  if(!c || c.kind === "binary") return c && !c.hit ? ' &middot; needs one play' : '';
+  if(["Cashed","Missed","Locked","Dead"].includes(c.badge) || c.req === null) return '';
+  const form = c.played ? fmt(c.formRate, l.dec) : fmt(l.ref.rate, l.dec);
+  return l.dir === "under"
+    ? ' &middot; can afford <b>' + fmt(c.req, l.dec) + '</b> ' + l.unit + '/g (form ' + form + ')'
+    : ' &middot; needs <b>' + fmt(c.req, l.dec) + '</b> ' + l.unit + '/g (form ' + form + ')';
+}
+
 function renderHome(){
   const wk = currentWeek();
   let html = '<div class="top"><h1>Fantasy Tracker</h1><span class="meta">week ' + wk + ' of 18</span></div>';
@@ -455,7 +466,7 @@ function renderHome(){
       '<div class="row"><div class="name">' + p.name + '</div><div class="pay num">' + p.payout + '</div></div>' +
       '<div class="meta">' + p.stake + ' &middot; ' + p.picks + ' &middot; ' + p.mult + '</div>' +
       '<div class="dots">' + cs.map(x => '<div class="dot" style="background:' + (x.c.badge === "Missed" ? "var(--strain)" : stateColor(x.c.state)) + '" title="' + x.leg.who + '"></div>').join("") + '</div>' +
-      '<div class="sub">' + (missed ? '<b style="color:var(--strain)">Busted</b> &middot; ' : '') + alive + ' of ' + p.legs.length + ' legs open &middot; tightest: <b style="color:' + tight.leg.color + '">' + tight.leg.who + '</b></div>' +
+      '<div class="sub">' + (missed ? '<b style="color:var(--strain)">Busted</b> &middot; ' : '') + alive + ' of ' + p.legs.length + ' legs open &middot; tightest: <b style="color:' + tight.leg.color + '">' + tight.leg.who + '</b>' + paceNote(tight) + '</div>' +
     '</div>';
   }
   html += '<div class="totals"><span><b>$' + stake.toFixed(2) + '</b> staked</span><span><b>$' + pay.toFixed(2) + '</b> if all three land</span><span><b>' + open + '</b> of 3 alive</span></div>';
