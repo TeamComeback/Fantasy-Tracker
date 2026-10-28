@@ -1,0 +1,30 @@
+# Fills last week's stat lines into data.json from nflverse's free weekly
+# player stats. Runs Tuesday and Wednesday mornings (the feed updates after
+# Monday night). Needs no secrets.
+name: Auto-fill weekly stats
+
+on:
+  schedule:
+    - cron: "15 11 * * 2,3"   # 7:15 AM Eastern (EDT) Tue and Wed
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  autofill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python autofill.py
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data.json; then echo "no new weeks"; exit 0; fi
+          git config user.name "stats-autofill"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git commit -m "Auto-fill weekly stats"
+          git push

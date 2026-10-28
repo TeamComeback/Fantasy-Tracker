@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-20",
- "throughWeek": 6,
+ "updated": "2026-10-28",
+ "throughWeek": 7,
  "_shape": "legs.<legId>.weeks.<weekNumber> = { val, opp, inj, note }. Omitted fields fall back to the schedule baked into index.html. A leg may also carry settled:'win' or settled:'loss' once the outcome is mathematically locked. Device edits always win over anything published here.",
  "_legIds": [
   "bowers",
@@ -59,6 +59,11 @@
      "val": 70,
      "opp": "vs BUF",
      "note": "Four catches on nine targets for 70 yards, no touchdown, in a 33-30 loss to Buffalo. Quiet first half, then most of the production came late as Las Vegas chased. He carried a knee issue into the week, was limited in practice, and was cleared Friday. Michael Mayer out-produced him, and Cousins' two touchdowns went to Tre Tucker. Even so, 382 yards through six games is 33 ahead of a flat pace of 349, the required rate has fallen to 49.5 a game against 2026 form of 60.9, and this is now the healthiest yardage leg in Goat Whale."
+    },
+    "7": {
+     "val": 73,
+     "opp": "vs LAR",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -182,6 +187,11 @@
      "val": 0,
      "opp": "at CLE",
      "note": "Six catches on a team-high eleven targets for 66 yards, no touchdown, in a 13-10 loss at Cleveland with Huntley at quarterback again. Baltimore's only touchdown was a 2-yard pass to Cuevas. He showed up on Thursday's injury report with a toe issue, was limited, then cleared to play. The target role is secure (19 looks in the last two games), but Huntley's passing game is too short and too slow to create scoring chances. Two touchdowns banked, so he needs four in eleven, 0.36 a game, against form of 0.32."
+    },
+    "7": {
+     "val": 1,
+     "opp": "vs CIN",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -223,6 +233,12 @@
      "opp": "vs WAS",
      "note": "Three catches for 94 yards, then grabbed his Achilles after a catch late in the first half and was ruled out for the rest of Monday night. 49ers held on 23-17. He was on the injury report with Achilles soreness all week, did not practice, and was listed questionable. Early reporting says the Achilles is injured but not torn, and he is expected to miss some time. No timeline or imaging details have been published. Three touchdowns through six, needing four in eleven (0.36 a game) against form of 0.45. The math still works if he returns quickly. An Achilles that has already been aggravated once is the real risk.",
      "inj": "D"
+    },
+    "7": {
+     "val": 0,
+     "opp": "at ATL",
+     "note": "Auto-filled: no stat line, so logged as a missed game.",
+     "inj": "O"
     }
    },
    "injNote": "Achilles. Left Week 6 late in the first half and was ruled out. Early reports say injured but not torn, and he is expected to miss some time. 'D' is my read pending the official report; no timeline yet. Also played through a rib injury in Weeks 4 and 5."
@@ -265,6 +281,12 @@
      "opp": "at CLE",
      "note": "Did not play. Ruled out Friday with the ankle he hurt in Week 4. This was his second straight missed game, and Huntley lost 13-10 on a walk-off field goal. Baltimore scored ten points, all in the first quarter. Six games now count, 1,111 banked against a line of 3,799.5, so he needs 2,689 over eleven: 244.5 a game against form of 200. His best season ran at 299 a game, so the leg is still alive if he returns soon and plays to his ceiling, but it has slipped from Live to Strained in two weeks. Minter said Monday the ankle is improving and called him day-to-day, and he may practice Wednesday ahead of Cincinnati.",
      "inj": "Q"
+    },
+    "7": {
+     "val": 0,
+     "opp": "vs CIN",
+     "note": "Auto-filled: no stat line, so logged as a missed game.",
+     "inj": "O"
     }
    },
    "injNote": "Ankle (sprain, neither low nor high). Missed Weeks 5 and 6. Minter said Monday it is improving and called him day-to-day, and he may practice Wednesday. Week 7 vs Cincinnati."
@@ -306,6 +328,11 @@
      "val": 2,
      "opp": "vs CHI",
      "note": "Two catches for minus 8 yards and nine carries for 61 in a 31-23 loss to Chicago. Atlanta lost three fumbles and had the ball for only 19:52, the clock was gone before Penix could go to him, and the late comeback throws went to Pitts. Twenty catches through six projects to about 57, short of the 65.5 line, and he needs 4.18 a game over eleven against form of 3.86. Week 5's seven targets looked like a turnaround, and one game-script loss erased it."
+    },
+    "7": {
+     "val": 5,
+     "opp": "vs SF",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -388,6 +415,11 @@
      "val": 258,
      "opp": "at GB",
      "note": "34-of-54 for 258, one touchdown and two interceptions in a 23-13 Sunday night loss at Green Bay. 54 attempts but only 4.8 a throw, against a Packers defense that blitzed 38 times. His streak of four straight games over 275 ended. Still 1,639 through six, 290 ahead of a flat pace of 1,349, needing 214.6 a game against form of 271. Dallas has lost two straight, and a trailing team throwing 54 times keeps this leg Comfortable."
+    },
+    "7": {
+     "val": 212,
+     "opp": "at PHI",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -428,6 +460,11 @@
      "val": 24,
      "opp": "vs SEA",
      "note": "Four catches on seven targets for 24 yards in a 17-14 overtime win over Seattle on Thursday night. All four came within 10 yards of the line of scrimmage, and Denver threw for only 107 as a team with 20 total air yards. The yardage line now reads 2, 138, 10, 35, 19, 24: one real game in six. 228 banked against a flat pace of 326, so he needs 63.4 a game against form of 45.6. Strained and getting worse. The Broncos keep winning without involving him downfield."
+    },
+    "7": {
+     "val": 48,
+     "opp": "at ARI",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -468,6 +505,11 @@
      "val": 0,
      "opp": "vs ARI",
      "note": "Leg already cashed in Week 4. The Rams had no rushing touchdowns in a 18-16 loss to Arizona. Logged for completeness."
+    },
+    "7": {
+     "val": 0,
+     "opp": "at LV",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    },
    "injNote": ""
@@ -508,6 +550,11 @@
     "6": {
      "opp": "BYE",
      "note": "Detroit bye. Doesn't count against the season; twelve chances remain. Back in Week 7 vs Green Bay."
+    },
+    "7": {
+     "val": 0,
+     "opp": "vs GB",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -547,6 +594,11 @@
     "6": {
      "opp": "BYE",
      "note": "Cincinnati bye. Doesn't count against the season. Still zero carries in five games, needing 12 rushing yards over twelve games. Back in Week 7 at Baltimore."
+    },
+    "7": {
+     "val": 0,
+     "opp": "at BAL",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    },
    "injNote": ""
@@ -589,6 +641,11 @@
      "val": 1,
      "opp": "at CLE",
      "note": "One carry for one yard, per the CBS game blurb (other sources listed only his receiving line). Third straight week with a designed touch, so the package is real even when it does not gain much. 34 banked against a line of 55 means he needs 21 more over eleven games, 1.91 a game, against form of 4.76. One more sweep of 15-plus yards nearly clinches it."
+    },
+    "7": {
+     "val": 0,
+     "opp": "vs CIN",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
