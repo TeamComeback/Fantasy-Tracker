@@ -438,6 +438,40 @@ function legHTML(p, leg, wkView){
 }
 
 // One-line pace for the tightest leg, shown on the home card so the week's worry is visible without opening the slip.
+/* ---------- hit chance ----------
+   A rough chance each leg cashes, from what is banked, games left and 2026 form.
+   Counting stats (TDs, receptions) are treated as Poisson per game; yardage gets a
+   per-game spread of 55% of the rate. One-play legs use a small per-game chance.
+   Players listed O or D lose one game; IR loses four. A shared 25% uncertainty on
+   each rate covers role changes over the rest of the season. A slip's chance is the product
+   of its legs' chances (legs treated as independent). */
+const BINARY_RATE = { fox: 0.045 };          // roughly one fake-punt pass a season
+function normCdf(z){ const t = 1/(1+0.2316419*Math.abs(z)), d = 0.3989423*Math.exp(-z*z/2);
+  const p = d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274)))); return z > 0 ? 1-p : p; }
+function legChance(leg){
+  const c = compute(leg);
+  if(["Cashed","Locked"].includes(c.badge) || (c.kind === "binary" && c.hit)) return 1;
+  if(["Missed","Dead"].includes(c.badge)) return 0;
+  const inj = S(leg.id).inj;
+  const rem = Math.max(0, c.remaining - (inj === "IR" ? 4 : (inj === "O" || inj === "D") ? 1 : 0));
+  if(c.kind === "binary"){ const q = BINARY_RATE[leg.id] || 0.06; return 1 - Math.pow(1 - q, rem); }
+  const mu = c.formRate || leg.ref.rate || 0;
+  const count = /TD|rec/i.test(leg.unit) || /touchdown|reception/i.test(leg.stat);
+  const varPer = count ? Math.max(mu, 0.05) : Math.pow(0.55 * mu, 2) + 1;
+  // Season-long role changes move the whole rate, not just single games: add a shared
+  // 25% uncertainty on the rate so long shots aren't read as impossible.
+  const mean = rem * mu, sd = Math.sqrt(Math.max(rem * varPer + Math.pow(rem * 0.25 * mu, 2), 1e-6));
+  if(leg.dir === "over") return rem === 0 ? (c.cur >= c.target ? 1 : 0) : 1 - normCdf((c.target - 0.5 - c.cur - mean) / sd);
+  return rem === 0 ? (c.cur <= c.target ? 1 : 0) : normCdf((c.target + 0.5 - c.cur - mean) / sd);
+}
+function slipChance(p){
+  const legs = p.legs.map(l => ({leg:l, p:legChance(l)}));
+  const all = legs.reduce((a, x) => a * x.p, 1);
+  const weakest = legs.filter(x => x.p < 1).sort((a, b) => a.p - b.p)[0];
+  return {p: all, weakest, ev: all * parseFloat(String(p.payout).replace(/[$,]/g, ""))};
+}
+function pctTxt(x){ return x >= 0.995 ? "99%+" : x < 0.001 ? "<0.1%" : x < 0.1 ? (x*100).toFixed(1) + "%" : Math.round(x*100) + "%"; }
+
 function paceNote(t){
   const c = t.c, l = t.leg;
   if(!c || c.kind === "binary") return c && !c.hit ? ' &middot; needs one play' : '';
@@ -464,7 +498,7 @@ function renderHome(){
     if(missed) dead++; else open++;
     html += '<div class="slipcard" data-slip="' + p.id + '" role="button" tabindex="0">' +
       '<div class="row"><div class="name">' + p.name + '</div><div class="pay num">' + p.payout + '</div></div>' +
-      '<div class="meta">' + p.stake + ' &middot; ' + p.picks + ' &middot; ' + p.mult + '</div>' +
+      '<div class="meta">' + p.stake + ' &middot; ' + p.picks + ' &middot; ' + p.mult + ' &middot; <b>' + pctTxt(slipChance(p).p) + '</b> to hit</div>' +
       '<div class="dots">' + cs.map(x => '<div class="dot" style="background:' + (x.c.badge === "Missed" ? "var(--strain)" : stateColor(x.c.state)) + '" title="' + x.leg.who + '"></div>').join("") + '</div>' +
       '<div class="sub">' + (missed ? '<b style="color:var(--strain)">Busted</b> &middot; ' : '') + alive + ' of ' + p.legs.length + ' legs open &middot; tightest: <b style="color:' + tight.leg.color + '">' + tight.leg.who + '</b>' + paceNote(tight) + '</div>' +
     '</div>';
@@ -500,6 +534,8 @@ function renderParlay(p){
   else tightTxt = "needing " + fmt(tight.c.req, tight.leg.dec) + " " + tight.leg.unit + " a game against " +
     (tight.c.played ? "2026 form of " + fmt(tight.c.formRate, tight.leg.dec) : "a " + tight.leg.ref.blurb + " baseline");
   html += p.resolved.map(r => '<div class="resolved"><b>' + r.who + '</b> ' + r.text + '</div>').join("");
+  const sc = slipChance(p);
+  html += '<div class="headline">Chance this slip cashes: <b>' + pctTxt(sc.p) + '</b>' + (sc.weakest ? ' &middot; weakest leg <b style="color:' + sc.weakest.leg.color + '">' + sc.weakest.leg.who + '</b> at ' + pctTxt(sc.weakest.p) : '') + ' &middot; expected value <b>$' + sc.ev.toFixed(2) + '</b> of ' + p.payout + '. A rough estimate from pace and 2026 form, treating legs as independent.</div>';
   html += '<div class="headline">' + (missed ? '<b style="color:var(--strain)">Slip is busted.</b> ' : (played === 0 ? "Nothing logged yet, every leg is priced off 2025 form. " : alive + " of " + p.legs.length + " legs still open. ")) +
     "Tightest right now: <b style=\"color:" + tight.leg.color + "\">" + tight.leg.who + "</b>, " + tightTxt + ".</div>";
 
