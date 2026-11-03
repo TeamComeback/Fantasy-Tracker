@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-28",
- "throughWeek": 7,
+ "updated": "2026-11-03",
+ "throughWeek": 8,
  "_shape": "legs.<legId>.weeks.<weekNumber> = { val, opp, inj, note }. Omitted fields fall back to the schedule baked into index.html. A leg may also carry settled:'win' or settled:'loss' once the outcome is mathematically locked. Device edits always win over anything published here.",
  "_legIds": [
   "bowers",
@@ -64,6 +64,11 @@
      "val": 73,
      "opp": "vs LAR",
      "note": "Auto-filled from nflverse weekly stats."
+    },
+    "8": {
+     "val": 92,
+     "opp": "at NYJ",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -104,6 +109,11 @@
      "val": 0,
      "opp": "at KC",
      "note": "No passing touchdown. 22-of-37 for 205 yards with an interception in a 22-6 loss at Kansas City. The Chargers scored zero touchdowns, settling for two short field goals with nine red-zone pass attempts, and Ladd McConkey was out with a concussion. The run of one-TD weeks ends in the wrong direction. Five through six games against a line of 25.5 means 21 more in eleven games, 1.91 a game, against form of 1.15. Last season he cleared this line by half a score, and right now he would need a pace better than his best year on a team that cannot find the end zone."
+    },
+    "8": {
+     "val": 0,
+     "opp": "at LAR",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -145,6 +155,11 @@
      "opp": "at LV",
      "note": "Inactive for the third straight game with the shoulder. He wore a non-contact jersey in practice and was questionable, then was ruled out Sunday. Buffalo won 33-30, with Keon Coleman leading the receivers in yards. Six games now count against the line (three of them missed), 178 yards banked, and he needs 58.9 a game over eleven against 2026 form of 33.8. That is now the worst yardage ratio on any slip. Buffalo is on bye in Week 7, so the next chance to play is Week 8 vs Baltimore.",
      "inj": "Q"
+    },
+    "8": {
+     "val": 82,
+     "opp": "vs BAL",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    },
    "injNote": "Shoulder. Inactive Weeks 4, 5 and 6. Wore a non-contact jersey in practice before Week 6. Buffalo is on bye in Week 7, so the earliest return is Week 8 vs Baltimore."
@@ -191,6 +206,11 @@
     "7": {
      "val": 1,
      "opp": "vs CIN",
+     "note": "Auto-filled from nflverse weekly stats."
+    },
+    "8": {
+     "val": 0,
+     "opp": "at BUF",
      "note": "Auto-filled from nflverse weekly stats."
     }
    }
@@ -287,6 +307,11 @@
      "opp": "vs CIN",
      "note": "Auto-filled: no stat line, so logged as a missed game.",
      "inj": "O"
+    },
+    "8": {
+     "val": 0,
+     "opp": "at BUF",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    },
    "injNote": "Ankle (sprain, neither low nor high). Missed Weeks 5 and 6. Minter said Monday it is improving and called him day-to-day, and he may practice Wednesday. Week 7 vs Cincinnati."
@@ -333,6 +358,11 @@
      "val": 5,
      "opp": "vs SF",
      "note": "Auto-filled from nflverse weekly stats."
+    },
+    "8": {
+     "val": 0,
+     "opp": "at TB",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -375,6 +405,11 @@
      "opp": "at KC",
      "note": "Back from the chest injury, cleared off the report Friday. One catch on three targets, a 57-yarder, and no touchdown. Los Angeles scored no touchdowns at all, and McConkey's concussion did not push targets his way. Zero touchdowns in six games against a line of 5.5, so he needs six in eleven: 0.55 a game against form of 0.23. Still the worst ratio on any slip. The trade chatter from last week remains unconfirmed.",
      "inj": ""
+    },
+    "8": {
+     "val": 0,
+     "opp": "at LAR",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -419,6 +454,11 @@
     "7": {
      "val": 212,
      "opp": "at PHI",
+     "note": "Auto-filled from nflverse weekly stats."
+    },
+    "8": {
+     "val": 195,
+     "opp": "vs ARI",
      "note": "Auto-filled from nflverse weekly stats."
     }
    }
@@ -465,6 +505,11 @@
      "val": 48,
      "opp": "at ARI",
      "note": "Auto-filled from nflverse weekly stats."
+    },
+    "8": {
+     "val": 39,
+     "opp": "vs KC",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -509,6 +554,11 @@
     "7": {
      "val": 0,
      "opp": "at LV",
+     "note": "Auto-filled from nflverse weekly stats."
+    },
+    "8": {
+     "val": 0,
+     "opp": "vs LAC",
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
@@ -555,6 +605,11 @@
      "val": 0,
      "opp": "vs GB",
      "note": "Auto-filled from nflverse weekly stats."
+    },
+    "8": {
+     "val": 0,
+     "opp": "vs MIN",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -598,6 +653,11 @@
     "7": {
      "val": 0,
      "opp": "at BAL",
+     "note": "Auto-filled from nflverse weekly stats."
+    },
+    "8": {
+     "val": 0,
+     "opp": "vs TEN",
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
@@ -646,6 +706,11 @@
      "val": 0,
      "opp": "vs CIN",
      "note": "Auto-filled from nflverse weekly stats."
+    },
+    "8": {
+     "val": 0,
+     "opp": "at BUF",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -686,6 +751,12 @@
      "val": 0,
      "opp": "at SF",
      "note": "Carted off with his left leg in an air cast late in the first quarter Monday night after going down untouched on a route. He had at least one catch, a 27-yarder, before leaving and did not score. Dan Quinn said the concern is that the injury could be significant, and NFL Network's Ian Rapoport reported it is feared to be season-ending, with an MRI Tuesday. Not confirmed yet. One touchdown in six games against a line of 5.5. If the MRI confirms the fear, this leg is dead and so is the Fun slip. Washington is on bye in Week 7.",
+     "inj": "O"
+    },
+    "8": {
+     "val": 0,
+     "opp": "vs PHI",
+     "note": "Auto-filled: no stat line, so logged as a missed game.",
      "inj": "O"
     }
    },
