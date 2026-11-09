@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-03",
- "throughWeek": 8,
+ "updated": "2026-11-09",
+ "throughWeek": 9,
  "_shape": "legs.<legId>.weeks.<weekNumber> = { val, opp, inj, note }. Omitted fields fall back to the schedule baked into index.html. A leg may also carry settled:'win' or settled:'loss' once the outcome is mathematically locked. Device edits always win over anything published here.",
  "_legIds": [
   "bowers",
@@ -61,19 +61,24 @@
      "note": "Four catches on nine targets for 70 yards, no touchdown, in a 33-30 loss to Buffalo. Quiet first half, then most of the production came late as Las Vegas chased. He carried a knee issue into the week, was limited in practice, and was cleared Friday. Michael Mayer out-produced him, and Cousins' two touchdowns went to Tre Tucker. Even so, 382 yards through six games is 33 ahead of a flat pace of 349, the required rate has fallen to 49.5 a game against 2026 form of 60.9, and this is now the healthiest yardage leg in Goat Whale."
     },
     "7": {
-     "val": 73,
      "opp": "vs LAR",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Six catches for 73 yards, no touchdown, in a 35-21 loss to the Rams. Line from NFL.com's official game log (the CBS '10 for 93' blurb was from 2024 and was rejected). A failed two-point try also targeted him.",
+     "val": 73
     },
     "8": {
-     "val": 92,
      "opp": "at NYJ",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Seven catches for 92 yards and two touchdowns in a 38-33 win over the Jets, his best scoring game of the year. Per NFL.com.",
+     "val": 92
+    },
+    "9": {
+     "opp": "at SF",
+     "note": "Seven catches for 111 yards and a 21-yard touchdown in a 38-17 loss at San Francisco. That is 276 yards in three games. Per NFL.com and the official scoring plays.",
+     "val": 111
     }
    }
   },
   "herbert": {
-   "inj": "",
+   "inj": "Q",
    "weeks": {
     "1": {
      "val": 1,
@@ -110,15 +115,25 @@
      "opp": "at KC",
      "note": "No passing touchdown. 22-of-37 for 205 yards with an interception in a 22-6 loss at Kansas City. The Chargers scored zero touchdowns, settling for two short field goals with nine red-zone pass attempts, and Ladd McConkey was out with a concussion. The run of one-TD weeks ends in the wrong direction. Five through six games against a line of 25.5 means 21 more in eleven games, 1.91 a game, against form of 1.15. Last season he cleared this line by half a score, and right now he would need a pace better than his best year on a team that cannot find the end zone."
     },
+    "7": {
+     "opp": "BYE",
+     "note": "Chargers bye. Doesn't count against the season. Back in Week 8 at the Rams."
+    },
     "8": {
-     "val": 0,
      "opp": "at LAR",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "No touchdown passes. The Chargers scored zero touchdowns in a 24-9 loss to the Rams: three Dicker field goals, zero red-zone pass attempts and two interceptions. Second scoreless passing game in three outings.",
+     "val": 0
+    },
+    "9": {
+     "opp": "vs HOU",
+     "note": "One touchdown pass, a 58-yarder to Quentin Johnston, in a 44-22 loss to Houston. He took eight sacks, finished roughly 13-of-23 for 193 (team totals minus Uiagalelei's 2-of-7 for 24), hurt his left middle finger, and was pulled in the fourth quarter. Harbaugh said it could be a fracture; imaging is pending. It is his non-throwing hand.",
+     "val": 1
     }
-   }
+   },
+   "injNote": "Left (non-throwing) middle finger. Hurt in Week 9 and pulled in the fourth quarter. Harbaugh says it could be a fracture; imaging is pending. Next game is Week 10 Monday night at Baltimore. DJ Uiagalelei is the backup."
   },
   "moore": {
-   "inj": "Q",
+   "inj": "",
    "weeks": {
     "1": {
      "val": 100,
@@ -156,17 +171,25 @@
      "note": "Inactive for the third straight game with the shoulder. He wore a non-contact jersey in practice and was questionable, then was ruled out Sunday. Buffalo won 33-30, with Keon Coleman leading the receivers in yards. Six games now count against the line (three of them missed), 178 yards banked, and he needs 58.9 a game over eleven against 2026 form of 33.8. That is now the worst yardage ratio on any slip. Buffalo is on bye in Week 7, so the next chance to play is Week 8 vs Baltimore.",
      "inj": "Q"
     },
+    "7": {
+     "opp": "BYE",
+     "note": "Bills bye. Doesn't count against the season, and it gives the shoulder a full two weeks off. Week 8 vs Baltimore."
+    },
     "8": {
-     "val": 82,
      "opp": "vs BAL",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Back from the shoulder after missing Weeks 4 to 6 (Week 7 was the bye): four catches for 82 yards and an 11-yard touchdown in a 36-10 rout of Baltimore. Per NFL.com and the official scoring plays. The best sign in a month, but he is still far behind the needed pace.",
+     "val": 82
+    },
+    "9": {
+     "opp": "at MIN",
+     "note": "PENDING: Monday Night Football at Minnesota, Nov 9."
     }
    },
-   "injNote": "Shoulder. Inactive Weeks 4, 5 and 6. Wore a non-contact jersey in practice before Week 6. Buffalo is on bye in Week 7, so the earliest return is Week 8 vs Baltimore."
+   "injNote": ""
   },
   "flowers": {
    "inj": "",
-   "injNote": "",
+   "injNote": "No injury. Quarterback crisis: Lamar is on IR and Huntley has a toe injury. Emergency QB Fagnano played Weeks 8 and 9, and Baltimore traded for Jacoby Brissett.",
    "weeks": {
     "1": {
      "val": 1,
@@ -206,12 +229,17 @@
     "7": {
      "val": 1,
      "opp": "vs CIN",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Touchdown. Huntley hit him on the second snap of the game for a 48-yard score. He finished with 8 catches on 11 targets for 137 yards, his best receiving game of the year, in a 35-13 loss where Baltimore led 13-0 at half and then gave up 35 straight points. That is his third touchdown, and the volume has held up with a backup quarterback: 30 targets across the last three games. He needs three more in ten games (0.30 a game) against 2026 form of 0.38, so this leg moved from Strained to the right side of the line. Lamar is expected back in Week 8, which should improve his red-zone looks."
     },
     "8": {
-     "val": 0,
      "opp": "at BUF",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Shut out: zero catches on five targets in a 36-10 loss. Lamar hurt his thumb on the first snap, Huntley left before halftime with a toe injury, and emergency QB Joe Fagnano played the rest. Baltimore had no passing touchdowns.",
+     "val": 0
+    },
+    "9": {
+     "opp": "vs JAX",
+     "note": "Three catches for 6 yards, no touchdown, in a 33-10 Thursday night loss with Joe Fagnano at quarterback. Baltimore threw for only 57 yards as a team. Since then the Ravens have traded for Jacoby Brissett.",
+     "val": 0
     }
    }
   },
@@ -257,14 +285,23 @@
     "7": {
      "val": 0,
      "opp": "at ATL",
-     "note": "Auto-filled: no stat line, so logged as a missed game.",
+     "note": "Inactive with the Achilles; he was ruled out Friday after not practicing all week. San Francisco lost for the first time, 29-20 at Atlanta, with four turnovers. Seven games now count, three touchdowns banked, so he needs four in ten (0.40 a game) against form of 0.41. Dead even, and that is before knowing when he comes back. The 49ers are on bye in Week 8, so the earliest return is Week 9 vs Las Vegas, which buys a two-week healing window without losing another game.",
      "inj": "O"
+    },
+    "8": {
+     "opp": "BYE",
+     "note": "49ers bye. Doesn't count against the season."
+    },
+    "9": {
+     "opp": "vs LV",
+     "note": "Inactive (Achilles), ruled out Friday. His second missed game since the injury. Mike Garafolo calls him 'questionable at best' for Week 10 at Dallas.",
+     "val": 0
     }
    },
-   "injNote": "Achilles. Left Week 6 late in the first half and was ruled out. Early reports say injured but not torn, and he is expected to miss some time. 'D' is my read pending the official report; no timeline yet. Also played through a rib injury in Weeks 4 and 5."
+   "injNote": "Achilles (injured, not torn). Missed Weeks 7 and 9 (Week 8 was the bye). Garafolo: 'questionable at best' for Week 10 at Dallas."
   },
   "lamar": {
-   "inj": "Q",
+   "inj": "IR",
    "weeks": {
     "1": {
      "val": 364,
@@ -305,16 +342,22 @@
     "7": {
      "val": 0,
      "opp": "vs CIN",
-     "note": "Auto-filled: no stat line, so logged as a missed game.",
-     "inj": "O"
+     "note": "Did not play. Downgraded from questionable to out with what ESPN now calls a high ankle sprain. That is three straight missed games. Huntley's offense scored 13 and then went silent. Seven games now count against the line, so he needs 2,689 over ten: 268.9 a game. His 2024 rate was 299, so it can still be done, but it now takes close to a career-best second half. NFL Network's Ian Rapoport reports he is likely to play in Week 8 at Buffalo.",
+     "inj": "Q"
     },
     "8": {
-     "val": 0,
      "opp": "at BUF",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "One snap: he was hit by Greg Rousseau while throwing on the first play, went 0-for-1, and suffered a fractured and dislocated right (throwing) thumb. No rushing. He had surgery and was placed on IR.",
+     "val": 0
+    },
+    "9": {
+     "opp": "vs JAX",
+     "note": "On IR after thumb surgery.",
+     "val": 0
     }
    },
-   "injNote": "Ankle (sprain, neither low nor high). Missed Weeks 5 and 6. Minter said Monday it is improving and called him day-to-day, and he may practice Wednesday. Week 7 vs Cincinnati."
+   "injNote": "Fractured and dislocated right (throwing) thumb on his first snap of Week 8. Surgery, IR, 6 to 9 weeks per NFL Network; Rapoport says 'likely out for the season.'",
+   "settled": "loss"
   },
   "bijan": {
    "inj": "",
@@ -357,12 +400,17 @@
     "7": {
      "val": 5,
      "opp": "vs SF",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Five catches on five targets for 59 yards, plus 20 carries for 63, in a 29-20 win over San Francisco. 122 scrimmage yards on 25 touches. A positive game script let Atlanta use him as a receiver again, the opposite of last week. Twenty-five catches through seven projects to about 61, still a bit short of 65.5. He needs 4.10 a game over ten against form of 3.96, which is Live and close to even."
     },
     "8": {
-     "val": 0,
      "opp": "at TB",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Zero catches in a 16-0 shutout loss at Tampa Bay. He ran 19 times for 76 yards, but Atlanta never got into a passing script that used him. The second zero-catch-type game in three weeks.",
+     "val": 0
+    },
+    "9": {
+     "opp": "vs CIN",
+     "note": "Six catches on seven targets for 47 yards, plus 19 carries for 100 and a touchdown, in a 34-17 loss to Cincinnati in Madrid. Per Rotowire.",
+     "val": 6
     }
    }
   },
@@ -406,10 +454,19 @@
      "note": "Back from the chest injury, cleared off the report Friday. One catch on three targets, a 57-yarder, and no touchdown. Los Angeles scored no touchdowns at all, and McConkey's concussion did not push targets his way. Zero touchdowns in six games against a line of 5.5, so he needs six in eleven: 0.55 a game against form of 0.23. Still the worst ratio on any slip. The trade chatter from last week remains unconfirmed.",
      "inj": ""
     },
+    "7": {
+     "opp": "BYE",
+     "note": "Chargers bye. Doesn't count against the season. Back in Week 8 at the Rams."
+    },
     "8": {
-     "val": 0,
      "opp": "at LAR",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "No touchdown. The Chargers scored no touchdowns in a 24-9 loss and threw zero red-zone passes.",
+     "val": 0
+    },
+    "9": {
+     "opp": "vs HOU",
+     "note": "His first touchdown of the year: a 58-yard catch from Herbert in the fourth quarter. Per the official scoring plays.",
+     "val": 1
     }
    }
   },
@@ -452,19 +509,24 @@
      "note": "34-of-54 for 258, one touchdown and two interceptions in a 23-13 Sunday night loss at Green Bay. 54 attempts but only 4.8 a throw, against a Packers defense that blitzed 38 times. His streak of four straight games over 275 ended. Still 1,639 through six, 290 ahead of a flat pace of 1,349, needing 214.6 a game against form of 271. Dallas has lost two straight, and a trailing team throwing 54 times keeps this leg Comfortable."
     },
     "7": {
-     "val": 212,
      "opp": "at PHI",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "15-of-27 for 212 yards and three touchdowns, no interceptions, in a 38-21 Monday night win at Philadelphia. Dallas ran for 204, so he didn't need volume. Per NFL.com, and it matches Dallas's team passing total.",
+     "val": 212
     },
     "8": {
-     "val": 195,
      "opp": "vs ARI",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "19-of-29 for 195 yards and a touchdown in a 33-30 loss to Arizona. His lowest yardage game of the year. Per NFL.com.",
+     "val": 195
+    },
+    "9": {
+     "opp": "at IND",
+     "note": "21-of-34 for 335 yards, two touchdowns and no interceptions in a 27-23 comeback win at Indianapolis. Per Rotowire and CBS ('another 300-yard tally').",
+     "val": 335
     }
    }
   },
   "waddle": {
-   "inj": "",
+   "inj": "Q",
    "weeks": {
     "1": {
      "val": 2,
@@ -504,14 +566,21 @@
     "7": {
      "val": 48,
      "opp": "at ARI",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Four catches on seven targets for 48 yards before leaving in the fourth quarter of a 30-16 win at Arizona. He was hurt on a reverse: Nix pitched it to him, he lost the handle, dove on the loose ball, and stayed down. Payton called the play 'awful.' It is a chest injury, the same area that limited him in practice this week, and his status will be monitored before Week 8 vs Kansas City. Yardage line now reads 2, 138, 10, 35, 19, 24, 48. 276 banked, needing 64.9 a game over ten against form of 45.8. Strained, and now hurt. The yardage comes from CBS only.",
+     "inj": "Q"
     },
     "8": {
-     "val": 39,
      "opp": "vs KC",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Three catches for 39 yards and a touchdown in a 28-24 win over Kansas City, playing through the chest injury. Per NFL.com.",
+     "val": 39
+    },
+    "9": {
+     "opp": "at CAR",
+     "note": "One catch for 22 yards, then he suffered a concussion going up for a pass over the middle and was ruled out for the second half. Denver won 26-21.",
+     "val": 22
     }
-   }
+   },
+   "injNote": "Concussion in Week 9 (also playing through a chest injury). Must clear protocol for Week 10."
   },
   "nacua": {
    "inj": "",
@@ -554,12 +623,16 @@
     "7": {
      "val": 0,
      "opp": "at LV",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Leg already cashed in Week 4. He caught an 11-yard touchdown in the 35-21 win, but the Rams' two rushing scores went to Williams and Corum. Logged for completeness."
     },
     "8": {
-     "val": 0,
      "opp": "vs LAC",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Leg already cashed. Logged for completeness; the Rams' rushing scores went to Williams and Corum.",
+     "val": 0
+    },
+    "9": {
+     "opp": "at WAS",
+     "note": "Leg already cashed. Not tracked."
     }
    },
    "injNote": ""
@@ -604,12 +677,17 @@
     "7": {
      "val": 0,
      "opp": "vs GB",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "No pass attempt. Detroit beat Green Bay 20-17 on a last-second field goal, with Fox holding. The box score shows two ordinary punts, and no fake shows up in the scoring plays or recaps. The Lions' bio still lists his career passing line at 4-of-5 for 61 yards with no 2026 attempts, but it may not be updated for tonight's game yet. Eleven chances left."
     },
     "8": {
-     "val": 0,
      "opp": "vs MIN",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "No pass attempt in a 19-15 win (four punts per ESPN). The Lions' career line confirms his only 2026 attempt came in Week 9.",
+     "val": 0
+    },
+    "9": {
+     "opp": "at MIA",
+     "note": "CASHED. Fake-punt completion to Tay Martin, the Lions' first successful fake of the season, in a 19-9 win at Miami. His career line went from 4-of-5 for 61 to 5-of-6 for 72, so it was an 11-yard completion (Lions.com). The leg is a hit, though the Fun slip was already busted by McLaurin.",
+     "val": 11
     }
    }
   },
@@ -651,21 +729,25 @@
      "note": "Cincinnati bye. Doesn't count against the season. Still zero carries in five games, needing 12 rushing yards over twelve games. Back in Week 7 at Baltimore."
     },
     "7": {
-     "val": 0,
      "opp": "at BAL",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "No carries. Five catches for 62 yards and a touchdown. Zero confirmed two ways: NFL.com's official log shows no rushing entry, and the ESPN play-by-play (through late in the third quarter) shows none.",
+     "val": 0
     },
     "8": {
-     "val": 0,
      "opp": "vs TEN",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "Eleven catches for 141 yards and a touchdown in a 43-36 win. No carries per NFL.com's official log.",
+     "val": 0
+    },
+    "9": {
+     "opp": "at ATL",
+     "note": "PENDING on rushing. Ten catches for 155 yards and a 47-yard touchdown in Madrid. The CBS halftime box showed no carries, but no complete source has been posted yet."
     }
    },
    "injNote": ""
   },
   "zayrush": {
    "inj": "",
-   "injNote": "",
+   "injNote": "Same player as the Goat Whale leg; see the quarterback note there.",
    "weeks": {
     "1": {
      "val": 0,
@@ -703,14 +785,19 @@
      "note": "One carry for one yard, per the CBS game blurb (other sources listed only his receiving line). Third straight week with a designed touch, so the package is real even when it does not gain much. 34 banked against a line of 55 means he needs 21 more over eleven games, 1.91 a game, against form of 4.76. One more sweep of 15-plus yards nearly clinches it."
     },
     "7": {
-     "val": 0,
      "opp": "vs CIN",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "No carries in his 8-catch, 137-yard, one-touchdown game. Zero confirmed two ways: NFL.com's log shows no rushing entry (it does list his Week 3, 5 and 6 carries, so it captures them), and the ESPN play-by-play shows none.",
+     "val": 0
     },
     "8": {
-     "val": 0,
      "opp": "at BUF",
-     "note": "Auto-filled from nflverse weekly stats."
+     "note": "No carries per NFL.com's official log, in a game where Baltimore went through three quarterbacks.",
+     "val": 0
+    },
+    "9": {
+     "opp": "vs JAX",
+     "note": "Three carries for 17 yards (NFL.com), his biggest rushing game of the year. That puts him at 51 against a line of 54.5, so he needs four more yards in eight games.",
+     "val": 17
     }
    }
   },
@@ -753,14 +840,23 @@
      "note": "Carted off with his left leg in an air cast late in the first quarter Monday night after going down untouched on a route. He had at least one catch, a 27-yarder, before leaving and did not score. Dan Quinn said the concern is that the injury could be significant, and NFL Network's Ian Rapoport reported it is feared to be season-ending, with an MRI Tuesday. Not confirmed yet. One touchdown in six games against a line of 5.5. If the MRI confirms the fear, this leg is dead and so is the Fun slip. Washington is on bye in Week 7.",
      "inj": "O"
     },
+    "7": {
+     "opp": "BYE",
+     "note": "Commanders bye. Irrelevant now: he is out for the season with a torn patellar tendon."
+    },
     "8": {
-     "val": 0,
      "opp": "vs PHI",
-     "note": "Auto-filled: no stat line, so logged as a missed game.",
-     "inj": "O"
+     "note": "Out for the season (torn patellar tendon). Leg already dead.",
+     "val": 0
+    },
+    "9": {
+     "opp": "vs LAR",
+     "note": "Out for the season. Leg already dead.",
+     "val": 0
     }
    },
-   "injNote": "Knee. Carted off in an air cast in Week 6. MRI pending. Rapoport reports it is feared to be season-ending, and an outside analyst suspects a patellar tendon rupture. Not confirmed. Washington is on bye in Week 7."
+   "injNote": "Torn patellar tendon (Dan Quinn). Out for the rest of the season.",
+   "settled": "loss"
   },
   "dart": {
    "inj": "IR",
@@ -799,6 +895,20 @@
      "val": 0,
      "opp": "vs NO",
      "note": "Still locked at 250 passing yards against an under of 3,124.5. Winston and the Giants lost 34-27 to New Orleans. Nothing can move this leg."
+    },
+    "7": {
+     "val": 0,
+     "opp": "at HOU",
+     "note": "Still locked at 250 passing yards against an under of 3,124.5. Winston and the Giants won 27-21 at Houston. Nothing can move this leg."
+    },
+    "8": {
+     "opp": "BYE",
+     "note": "Giants bye."
+    },
+    "9": {
+     "opp": "at PHI",
+     "note": "Still locked at 250. Winston won 19-11 at Philadelphia.",
+     "val": 0
     }
    },
    "injNote": "Out for the remainder of the 2026 regular season. Jameis Winston has the job.",
