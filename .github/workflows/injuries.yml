@@ -1,0 +1,35 @@
+# Keeps each leg's injury tag current from ESPN's public injury report, so the
+# tracker shows O / D / Q before the weekend without a manual check. Needs no secrets.
+name: Refresh injury tags
+
+on:
+  schedule:
+    - cron: "40 21 * * 3,4,5"   # 4:40 PM Eastern Wed-Fri, after practice reports
+    - cron: "40 13 * * 0"       # 8:40 AM Eastern Sunday, after final designations
+    - cron: "40 22 * * 1"       # 5:40 PM Eastern Monday, for Monday night
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-json
+  cancel-in-progress: false
+
+jobs:
+  injuries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python injuries.py
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data.json; then echo "no change"; exit 0; fi
+          git config user.name "injury-refresh"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git commit -m "Refresh injury tags"
+          git pull --rebase -q && git push

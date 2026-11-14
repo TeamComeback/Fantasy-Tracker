@@ -60,6 +60,8 @@
   .leg-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:14px 18px 0}
   .who{font-family:"Barlow Condensed",sans-serif;font-size:24px;font-weight:500;line-height:1.1;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .line-txt{font-size:13px;color:var(--dim);margin-top:2px}
+  .pace-alert{font-family:Barlow,sans-serif;font-size:13px;line-height:1.4;margin:6px 0 2px;padding:6px 9px;border:1px solid var(--strain);color:var(--paper)}
+  .pace-alert b{color:var(--strain)}
   .badge{font-size:11px;letter-spacing:.06em;padding:4px 9px;border:1px solid;white-space:nowrap;flex-shrink:0}
   .b-clear{color:var(--clear);border-color:var(--clear)}
   .b-live{color:var(--live);border-color:var(--live)}
@@ -351,6 +353,24 @@ function pressure(leg){ // higher = tighter; used for headline + home dots
 }
 const stateColor = s => s === "clear" ? "var(--clear)" : s === "strain" ? "var(--strain)" : "var(--live)";
 
+/* ---------- pace alert ----------
+   An over leg is on alert when what it still needs per game is more than double what
+   the player has actually produced per game this season (at least 2 games logged).
+   "Strained" says a leg is behind; this says it needs a different season to cash. */
+function paceAlert(leg){
+  const c = compute(leg);
+  if(c.kind !== "pace" || leg.dir !== "over" || c.req === null || c.played < 2) return null;
+  if(["Cashed","Missed","Locked","Dead"].includes(c.badge)) return null;
+  const rate = c.seasonRate || 0;
+  return c.req > 2 * rate ? {need: c.req, rate, mult: rate > 0 ? c.req / rate : null} : null;
+}
+function paceAlertHTML(leg){
+  const a = paceAlert(leg);
+  if(!a) return "";
+  return '<div class="pace-alert">Pace alert: needs <b>' + fmt(a.need, leg.dec) + '</b> ' + leg.unit + '/g, ' +
+    (a.mult ? '<b>' + a.mult.toFixed(1) + 'x</b> his ' + fmt(a.rate, leg.dec) + '/g so far' : 'and he has <b>none</b> yet') + '</div>';
+}
+
 /* ---------- views ---------- */
 function injTag(leg){
   const st = S(leg.id).inj;
@@ -424,6 +444,7 @@ function legHTML(p, leg, wkView){
   return '<div class="leg" style="border-left:3px solid ' + leg.color + '">' +
     '<div class="leg-head"><div><div class="who" style="color:' + leg.color + '">' + leg.who + injTag(leg) + '</div><div class="line-txt">' + lineTxt + '</div></div>' +
       '<div class="badge ' + bcls + '">' + c.badge + '</div></div>' +
+    paceAlertHTML(leg) +
     body +
     '<div class="matchups">' +
       '<div class="mu"><span>Last</span><strong>' + (esc(opp(leg,prevW)) || "\u2014") + '</strong><em>' + prevVal + '</em></div>' +
@@ -494,13 +515,14 @@ function renderHome(){
     const alive = cs.filter(x => !["Cashed","Missed","Locked","Dead"].includes(x.c.badge)).length;
     const missed = cs.filter(x => x.c.badge === "Missed" || x.c.badge === "Dead").length;
     const tight = cs.slice().sort((a,b)=> pressure(b.leg) - pressure(a.leg))[0];
+    const alerts = p.legs.filter(l => paceAlert(l)).length;
     stake += parseFloat(p.stake.replace("$","")); pay += parseFloat(p.payout.replace("$",""));
     if(missed) dead++; else open++;
     html += '<div class="slipcard" data-slip="' + p.id + '" role="button" tabindex="0">' +
       '<div class="row"><div class="name">' + p.name + '</div><div class="pay num">' + p.payout + '</div></div>' +
       '<div class="meta">' + p.stake + ' &middot; ' + p.picks + ' &middot; ' + p.mult + ' &middot; <b>' + pctTxt(slipChance(p).p) + '</b> to hit</div>' +
       '<div class="dots">' + cs.map(x => '<div class="dot" style="background:' + (x.c.badge === "Missed" ? "var(--strain)" : stateColor(x.c.state)) + '" title="' + x.leg.who + '"></div>').join("") + '</div>' +
-      '<div class="sub">' + (missed ? '<b style="color:var(--strain)">Busted</b> &middot; ' : '') + alive + ' of ' + p.legs.length + ' legs open &middot; tightest: <b style="color:' + tight.leg.color + '">' + tight.leg.who + '</b>' + paceNote(tight) + '</div>' +
+      '<div class="sub">' + (missed ? '<b style="color:var(--strain)">Busted</b> &middot; ' : '') + alive + ' of ' + p.legs.length + ' legs open &middot; tightest: <b style="color:' + tight.leg.color + '">' + tight.leg.who + '</b>' + paceNote(tight) + (alerts ? ' &middot; <b style="color:var(--strain)">' + alerts + ' pace alert' + (alerts > 1 ? 's' : '') + '</b>' : '') + '</div>' +
     '</div>';
   }
   html += '<div class="totals"><span><b>$' + stake.toFixed(2) + '</b> staked</span><span><b>$' + pay.toFixed(2) + '</b> if all three land</span><span><b>' + open + '</b> of 3 alive</span></div>';
