@@ -78,7 +78,7 @@
    }
   },
   "herbert": {
-   "inj": "Q",
+   "inj": "",
    "weeks": {
     "1": {
      "val": 1,
@@ -130,7 +130,7 @@
      "val": 1
     }
    },
-   "injNote": "Left (non-throwing) middle finger. Hurt in Week 9 and pulled in the fourth quarter. Harbaugh says it could be a fracture; imaging is pending. Next game is Week 10 Monday night at Baltimore. DJ Uiagalelei is the backup."
+   "injNote": ""
   },
   "moore": {
    "inj": "",
@@ -189,7 +189,7 @@
   },
   "flowers": {
    "inj": "",
-   "injNote": "No injury. Quarterback crisis: Lamar is on IR and Huntley has a toe injury. Emergency QB Fagnano played Weeks 8 and 9, and Baltimore traded for Jacoby Brissett.",
+   "injNote": "",
    "weeks": {
     "1": {
      "val": 1,
@@ -244,7 +244,7 @@
    }
   },
   "evans": {
-   "inj": "D",
+   "inj": "O",
    "weeks": {
     "1": {
      "val": 1,
@@ -298,7 +298,7 @@
      "val": 0
     }
    },
-   "injNote": "Achilles (injured, not torn). Missed Weeks 7 and 9 (Week 8 was the bye). Garafolo: 'questionable at best' for Week 10 at Dallas."
+   "injNote": "Evans (Achilles) has a chance to return to action next Sunday against the Vikings, Mike Garafolo of NFL Network reports."
   },
   "lamar": {
    "inj": "IR",
@@ -580,10 +580,10 @@
      "val": 22
     }
    },
-   "injNote": "Concussion in Week 9 (also playing through a chest injury). Must clear protocol for Week 10."
+   "injNote": "Waddle (concussion) has been ruled out for the remainder of Sunday's game against the Panthers, Parker Gabriel of The Denver Post reports."
   },
   "nacua": {
-   "inj": "",
+   "inj": "IR",
    "weeks": {
     "1": {
      "val": 0,
@@ -635,7 +635,7 @@
      "note": "Leg already cashed. Not tracked."
     }
    },
-   "injNote": ""
+   "injNote": "Nacua (knee/toe) has an expected return date of \"mid-December,\" Ian Rapoport of NFL Network reports."
   },
   "fox": {
    "inj": "",
@@ -747,7 +747,7 @@
   },
   "zayrush": {
    "inj": "",
-   "injNote": "Same player as the Goat Whale leg; see the quarterback note there.",
+   "injNote": "",
    "weeks": {
     "1": {
      "val": 0,
@@ -914,5 +914,6 @@
    "injNote": "Out for the remainder of the 2026 regular season. Jameis Winston has the job.",
    "settled": "win"
   }
- }
+ },
+ "injuriesUpdated": "2026-11-15 14:26 ET"
 }
