@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-09",
- "throughWeek": 9,
+ "updated": "2026-11-17",
+ "throughWeek": 10,
  "_shape": "legs.<legId>.weeks.<weekNumber> = { val, opp, inj, note }. Omitted fields fall back to the schedule baked into index.html. A leg may also carry settled:'win' or settled:'loss' once the outcome is mathematically locked. Device edits always win over anything published here.",
  "_legIds": [
   "bowers",
@@ -74,6 +74,11 @@
      "opp": "at SF",
      "note": "Seven catches for 111 yards and a 21-yard touchdown in a 38-17 loss at San Francisco. That is 276 yards in three games. Per NFL.com and the official scoring plays.",
      "val": 111
+    },
+    "10": {
+     "val": 18,
+     "opp": "vs SEA",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -128,6 +133,11 @@
      "opp": "vs HOU",
      "note": "One touchdown pass, a 58-yarder to Quentin Johnston, in a 44-22 loss to Houston. He took eight sacks, finished roughly 13-of-23 for 193 (team totals minus Uiagalelei's 2-of-7 for 24), hurt his left middle finger, and was pulled in the fourth quarter. Harbaugh said it could be a fracture; imaging is pending. It is his non-throwing hand.",
      "val": 1
+    },
+    "10": {
+     "val": 0,
+     "opp": "at BAL",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    },
    "injNote": ""
@@ -183,6 +193,11 @@
     "9": {
      "opp": "at MIN",
      "note": "PENDING: Monday Night Football at Minnesota, Nov 9."
+    },
+    "10": {
+     "val": 90,
+     "opp": "at NYJ",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    },
    "injNote": ""
@@ -240,6 +255,11 @@
      "opp": "vs JAX",
      "note": "Three catches for 6 yards, no touchdown, in a 33-10 Thursday night loss with Joe Fagnano at quarterback. Baltimore threw for only 57 yards as a team. Since then the Ravens have traded for Jacoby Brissett.",
      "val": 0
+    },
+    "10": {
+     "val": 0,
+     "opp": "vs LAC",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -296,6 +316,12 @@
      "opp": "vs LV",
      "note": "Inactive (Achilles), ruled out Friday. His second missed game since the injury. Mike Garafolo calls him 'questionable at best' for Week 10 at Dallas.",
      "val": 0
+    },
+    "10": {
+     "val": 0,
+     "opp": "at DAL",
+     "note": "Auto-filled: no stat line, so logged as a missed game.",
+     "inj": "O"
     }
    },
    "injNote": "Head coach Kyle Shanahan said Monday that the 49ers are \"hoping to\" have Evans (Achilles) back at practice this week, Nick Wagoner of ESPN.com reports."
@@ -411,6 +437,11 @@
      "opp": "vs CIN",
      "note": "Six catches on seven targets for 47 yards, plus 19 carries for 100 and a touchdown, in a 34-17 loss to Cincinnati in Madrid. Per Rotowire.",
      "val": 6
+    },
+    "10": {
+     "val": 4,
+     "opp": "vs KC",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -467,6 +498,11 @@
      "opp": "vs HOU",
      "note": "His first touchdown of the year: a 58-yard catch from Herbert in the fourth quarter. Per the official scoring plays.",
      "val": 1
+    },
+    "10": {
+     "val": 0,
+     "opp": "at BAL",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -522,6 +558,11 @@
      "opp": "at IND",
      "note": "21-of-34 for 335 yards, two touchdowns and no interceptions in a 27-23 comeback win at Indianapolis. Per Rotowire and CBS ('another 300-yard tally').",
      "val": 335
+    },
+    "10": {
+     "val": 343,
+     "opp": "vs SF",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -633,6 +674,12 @@
     "9": {
      "opp": "at WAS",
      "note": "Leg already cashed. Not tracked."
+    },
+    "10": {
+     "val": 0,
+     "opp": "at ARI",
+     "note": "Auto-filled: no stat line, so logged as a missed game.",
+     "inj": "O"
     }
    },
    "injNote": "Nacua (knee/toe) has an expected return date of \"mid-December,\" Ian Rapoport of NFL Network reports."
@@ -688,6 +735,11 @@
      "opp": "at MIA",
      "note": "CASHED. Fake-punt completion to Tay Martin, the Lions' first successful fake of the season, in a 19-9 win at Miami. His career line went from 4-of-5 for 61 to 5-of-6 for 72, so it was an 11-yard completion (Lions.com). The leg is a hit, though the Fun slip was already busted by McLaurin.",
      "val": 11
+    },
+    "10": {
+     "val": 0,
+     "opp": "vs NE",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -741,6 +793,11 @@
     "9": {
      "opp": "at ATL",
      "note": "PENDING on rushing. Ten catches for 155 yards and a 47-yard touchdown in Madrid. The CBS halftime box showed no carries, but no complete source has been posted yet."
+    },
+    "10": {
+     "val": 0,
+     "opp": "vs PIT",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    },
    "injNote": ""
@@ -798,6 +855,11 @@
      "opp": "vs JAX",
      "note": "Three carries for 17 yards (NFL.com), his biggest rushing game of the year. That puts him at 51 against a line of 54.5, so he needs four more yards in eight games.",
      "val": 17
+    },
+    "10": {
+     "val": 0,
+     "opp": "vs LAC",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
