@@ -22,8 +22,8 @@
  ],
  "legs": {
   "bowers": {
-   "inj": "",
-   "injNote": "",
+   "inj": "Q",
+   "injNote": "Raiders head coach Klint Kubiak confirmed Monday that Bowers (ankle) is considered day-to-day after exiting Sunday's 21-13 loss to the Seahawks, Sam Warren of The Athletic reports. \"It's not as bad as we thought, but still a significant inj",
    "weeks": {
     "1": {
      "val": 0,
@@ -298,7 +298,7 @@
      "val": 0
     }
    },
-   "injNote": "Evans (Achilles) has a chance to return to action next Sunday against the Vikings, Mike Garafolo of NFL Network reports."
+   "injNote": "Head coach Kyle Shanahan said Monday that the 49ers are \"hoping to\" have Evans (Achilles) back at practice this week, Nick Wagoner of ESPN.com reports."
   },
   "lamar": {
    "inj": "IR",
@@ -915,5 +915,5 @@
    "settled": "win"
   }
  },
- "injuriesUpdated": "2026-11-15 14:26 ET"
+ "injuriesUpdated": "2026-11-16 23:45 ET"
 }
