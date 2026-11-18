@@ -1,11 +1,13 @@
 # Fills last week's stat lines into data.json from nflverse's free weekly
 # player stats. Runs Tuesday and Wednesday mornings (the feed updates after
-# Monday night). Needs no secrets.
+# Monday night), plus Thursday and Friday mornings so the Thursday-night game
+# lands once the feed has it. It only adds weeks that are missing, never
+# overwriting settled legs or hand-written notes. Needs no secrets.
 name: Auto-fill weekly stats
 
 on:
   schedule:
-    - cron: "15 11 * * 2,3"   # 7:15 AM Eastern (EDT) Tue and Wed
+    - cron: "15 11 * * 2,3,4,5"   # 7:15 AM Eastern (EDT) Tue, Wed, Thu and Fri
   workflow_dispatch:
 
 permissions:
