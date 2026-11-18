@@ -62,6 +62,8 @@
   .line-txt{font-size:13px;color:var(--dim);margin-top:2px}
   .pace-alert{font-family:Barlow,sans-serif;font-size:13px;line-height:1.4;margin:6px 0 2px;padding:6px 9px;border:1px solid var(--strain);color:var(--paper)}
   .pace-alert b{color:var(--strain)}
+  .leg.lost{opacity:.5}
+  .inj.dim{opacity:.4}
   .badge{font-size:11px;letter-spacing:.06em;padding:4px 9px;border:1px solid;white-space:nowrap;flex-shrink:0}
   .b-clear{color:var(--clear);border-color:var(--clear)}
   .b-live{color:var(--live);border-color:var(--live)}
@@ -357,7 +359,12 @@ const stateColor = s => s === "clear" ? "var(--clear)" : s === "strain" ? "var(-
    An over leg is on alert when what it still needs per game is more than double what
    the player has actually produced per game this season (at least 2 games logged).
    "Strained" says a leg is behind; this says it needs a different season to cash. */
+/* A slip is lost once any of its legs has Missed or is Dead (settled as a loss). Legs on a lost slip
+   keep showing, greyed out, but raise no pace or injury alerts: nothing they do can revive the slip. */
+function slipLost(p){ return p.legs.some(l => { const b = compute(l).badge; return b === "Missed" || b === "Dead"; }); }
+function onLostSlip(leg){ return PARLAYS.some(p => p.legs.some(l => l.id === leg.id) && slipLost(p)); }
 function paceAlert(leg){
+  if(onLostSlip(leg)) return null;
   const c = compute(leg);
   if(c.kind !== "pace" || leg.dir !== "over" || c.req === null || c.played < 2) return null;
   if(["Cashed","Missed","Locked","Dead"].includes(c.badge)) return null;
@@ -375,7 +382,7 @@ function paceAlertHTML(leg){
 function injTag(leg){
   const st = S(leg.id).inj;
   if(!st) return "";
-  return '<span class="inj' + (st === "Q" ? " q" : "") + '" title="' + esc(S(leg.id).injNote) + '">' + st + '</span>';
+  return '<span class="inj' + (st === "Q" ? " q" : "") + (onLostSlip(leg) ? " dim" : "") + '" title="' + esc(S(leg.id).injNote) + '">' + st + '</span>';
 }
 
 function legHTML(p, leg, wkView){
@@ -441,7 +448,7 @@ function legHTML(p, leg, wkView){
       (r.note ? '<div class="log-note">' + esc(r.note) + '</div>' : '');
   }).join("");
 
-  return '<div class="leg" style="border-left:3px solid ' + leg.color + '">' +
+  return '<div class="leg' + (slipLost(p) ? ' lost' : '') + '" style="border-left:3px solid ' + leg.color + '">' +
     '<div class="leg-head"><div><div class="who" style="color:' + leg.color + '">' + leg.who + injTag(leg) + '</div><div class="line-txt">' + lineTxt + '</div></div>' +
       '<div class="badge ' + bcls + '">' + c.badge + '</div></div>' +
     paceAlertHTML(leg) +
