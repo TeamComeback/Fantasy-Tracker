@@ -23,7 +23,7 @@
  "legs": {
   "bowers": {
    "inj": "Q",
-   "injNote": "Raiders head coach Klint Kubiak confirmed Monday that Bowers (ankle) is considered day-to-day after exiting Sunday's 21-13 loss to the Seahawks, Sam Warren of The Athletic reports. \"It's not as bad as we thought, but still a significant inj",
+   "injNote": "Coach Klint Kubiak noted Wednesday that Bowers (ankle) doesn't need to practice this week in order to play Sunday Sunday against the Broncos, Sam Warren of The Athletic reports.",
    "weeks": {
     "1": {
      "val": 0,
@@ -264,7 +264,7 @@
    }
   },
   "evans": {
-   "inj": "O",
+   "inj": "Q",
    "weeks": {
     "1": {
      "val": 1,
@@ -324,7 +324,7 @@
      "inj": "O"
     }
    },
-   "injNote": "Head coach Kyle Shanahan said Monday that the 49ers are \"hoping to\" have Evans (Achilles) back at practice this week, Nick Wagoner of ESPN.com reports."
+   "injNote": "Head coach Kyle Shanahan said Evans (Achilles) won't practice Wednesday, but Shanahan hopes the wide receiver will return to drills Thursday, Nick Wagoner of ESPN.com reports."
   },
   "lamar": {
    "inj": "IR",
@@ -621,10 +621,10 @@
      "val": 22
     }
    },
-   "injNote": "Waddle (concussion) has been ruled out for the remainder of Sunday's game against the Panthers, Parker Gabriel of The Denver Post reports."
+   "injNote": "Waddle (concussion) was present for Wednesday's practice, Chris Tomasson of the Denver Gazette reports."
   },
   "nacua": {
-   "inj": "IR",
+   "inj": "",
    "weeks": {
     "1": {
      "val": 0,
@@ -682,7 +682,7 @@
      "inj": "O"
     }
    },
-   "injNote": "Nacua (knee/toe) has an expected return date of \"mid-December,\" Ian Rapoport of NFL Network reports."
+   "injNote": ""
   },
   "fox": {
    "inj": "",
@@ -977,5 +977,5 @@
    "settled": "win"
   }
  },
- "injuriesUpdated": "2026-11-16 23:45 ET"
+ "injuriesUpdated": "2026-11-18 21:48 ET"
 }
