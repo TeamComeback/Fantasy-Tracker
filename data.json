@@ -23,7 +23,7 @@
  "legs": {
   "bowers": {
    "inj": "Q",
-   "injNote": "Coach Klint Kubiak noted Wednesday that Bowers (ankle) doesn't need to practice this week in order to play Sunday Sunday against the Broncos, Sam Warren of The Athletic reports.",
+   "injNote": "Bowers (ankle/quadriceps) was listed as a limited participant in Thursday's practice, Ryan McFadden of ESPN.com reports.",
    "weeks": {
     "1": {
      "val": 0,
@@ -324,7 +324,7 @@
      "inj": "O"
     }
    },
-   "injNote": "Head coach Kyle Shanahan said Evans (Achilles) won't practice Wednesday, but Shanahan hopes the wide receiver will return to drills Thursday, Nick Wagoner of ESPN.com reports."
+   "injNote": "Evans (Achilles) officially was limited at Thursday's practice, Nick Wagoner of ESPN reports."
   },
   "lamar": {
    "inj": "IR",
@@ -621,10 +621,10 @@
      "val": 22
     }
    },
-   "injNote": "Waddle (concussion) was present for Wednesday's practice, Chris Tomasson of the Denver Gazette reports."
+   "injNote": "Waddle (concussion) was a full practice participant Thursday."
   },
   "nacua": {
-   "inj": "",
+   "inj": "IR",
    "weeks": {
     "1": {
      "val": 0,
@@ -682,7 +682,7 @@
      "inj": "O"
     }
    },
-   "injNote": ""
+   "injNote": "Nacua has been suspended three games for violating the NFL's personal conduct policy, Adam Schefter of ESPN reports."
   },
   "fox": {
    "inj": "",
@@ -977,5 +977,5 @@
    "settled": "win"
   }
  },
- "injuriesUpdated": "2026-11-18 21:48 ET"
+ "injuriesUpdated": "2026-11-19 21:36 ET"
 }
