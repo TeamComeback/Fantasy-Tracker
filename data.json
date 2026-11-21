@@ -23,7 +23,7 @@
  "legs": {
   "bowers": {
    "inj": "Q",
-   "injNote": "Bowers (ankle/quadriceps) was listed as a limited participant in Thursday's practice, Ryan McFadden of ESPN.com reports.",
+   "injNote": "Bowers (ankle) said Friday that his availability for Sunday's game against the Broncos remains up in the air, Sam Warren of The Athletic reports.",
    "weeks": {
     "1": {
      "val": 0,
@@ -324,7 +324,7 @@
      "inj": "O"
     }
    },
-   "injNote": "Evans (Achilles) officially was limited at Thursday's practice, Nick Wagoner of ESPN reports."
+   "injNote": "Head coach Kyle Shanahan said Friday that the 49ers will make a decision on Evans' (Achilles) Week 11 status Saturday after listing the wide receiver as questionable for Sunday's game against the Vikings in Mexico City, Matt Barrows of ESPN"
   },
   "lamar": {
    "inj": "IR",
@@ -567,7 +567,7 @@
    }
   },
   "waddle": {
-   "inj": "Q",
+   "inj": "",
    "weeks": {
     "1": {
      "val": 2,
@@ -621,7 +621,7 @@
      "val": 22
     }
    },
-   "injNote": "Waddle (concussion) was a full practice participant Thursday."
+   "injNote": ""
   },
   "nacua": {
    "inj": "IR",
@@ -682,7 +682,7 @@
      "inj": "O"
     }
    },
-   "injNote": "Nacua has been suspended three games for violating the NFL's personal conduct policy, Adam Schefter of ESPN reports."
+   "injNote": "Coach Sean McVay revealed Friday that Nacua (knee) had surgery to repair his MCL on Tuesday and is on track to miss a couple of months, Sarah Barshop of ESPN.com reports."
   },
   "fox": {
    "inj": "",
@@ -977,5 +977,5 @@
    "settled": "win"
   }
  },
- "injuriesUpdated": "2026-11-19 21:36 ET"
+ "injuriesUpdated": "2026-11-20 21:50 ET"
 }
