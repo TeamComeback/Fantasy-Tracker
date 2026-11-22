@@ -22,8 +22,8 @@
  ],
  "legs": {
   "bowers": {
-   "inj": "Q",
-   "injNote": "Bowers (ankle) said Friday that his availability for Sunday's game against the Broncos remains up in the air, Sam Warren of The Athletic reports.",
+   "inj": "O",
+   "injNote": "Bowers (ankle/quad) is inactive for Sunday's game against the Broncos.",
    "weeks": {
     "1": {
      "val": 0,
@@ -324,7 +324,7 @@
      "inj": "O"
     }
    },
-   "injNote": "Head coach Kyle Shanahan said Friday that the 49ers will make a decision on Evans' (Achilles) Week 11 status Saturday after listing the wide receiver as questionable for Sunday's game against the Vikings in Mexico City, Matt Barrows of ESPN"
+   "injNote": "Evans (Achilles), who is listed as questionable for Sunday's game against the Vikings in Mexico City, is expected to be active and is likely to avoid a strict \"pitch count,\" though the 49ers plan to \"be smart\" with his workload, Jay Glazer "
   },
   "lamar": {
    "inj": "IR",
@@ -682,7 +682,7 @@
      "inj": "O"
     }
    },
-   "injNote": "Coach Sean McVay revealed Friday that Nacua (knee) had surgery to repair his MCL on Tuesday and is on track to miss a couple of months, Sarah Barshop of ESPN.com reports."
+   "injNote": "Nacua (knee/toe) is expected to be sidelined 4-to-5 months after undergoing surgery Tuesday to repair his right MCL, which means he won't be on track to return at any point during the playoffs, Adam Schefter of ESPN reports."
   },
   "fox": {
    "inj": "",
@@ -977,5 +977,5 @@
    "settled": "win"
   }
  },
- "injuriesUpdated": "2026-11-20 21:50 ET"
+ "injuriesUpdated": "2026-11-22 15:27 ET"
 }
