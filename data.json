@@ -23,7 +23,7 @@
  "legs": {
   "bowers": {
    "inj": "O",
-   "injNote": "Bowers (ankle/quad) is inactive for Sunday's game against the Broncos.",
+   "injNote": "Raiders coach Klink Kubiak said after Sunday's 38-24 loss to the Broncos that he's optimistic Bowers (ankle/quadriceps) will be available to face the Browns on Nov. 29, Ryan McFadden of ESPN.com reports.",
    "weeks": {
     "1": {
      "val": 0,
@@ -83,7 +83,7 @@
    }
   },
   "herbert": {
-   "inj": "",
+   "inj": "Q",
    "weeks": {
     "1": {
      "val": 1,
@@ -140,7 +140,7 @@
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
-   "injNote": ""
+   "injNote": "Herbert entered the concussion protocol after Sunday's 27-24 loss to the Jets, Noah Furtado of The Athletic reports."
   },
   "moore": {
    "inj": "",
@@ -264,7 +264,7 @@
    }
   },
   "evans": {
-   "inj": "Q",
+   "inj": "",
    "weeks": {
     "1": {
      "val": 1,
@@ -324,7 +324,7 @@
      "inj": "O"
     }
    },
-   "injNote": "Evans (Achilles), who is listed as questionable for Sunday's game against the Vikings in Mexico City, is expected to be active and is likely to avoid a strict \"pitch count,\" though the 49ers plan to \"be smart\" with his workload, Jay Glazer "
+   "injNote": ""
   },
   "lamar": {
    "inj": "IR",
@@ -977,7 +977,7 @@
    "settled": "win"
   }
  },
- "injuriesUpdated": "2026-11-22 15:27 ET",
+ "injuriesUpdated": "2026-11-24 01:20 ET",
  "allowed": {
   "bowers": {
    "pos": "TE",
