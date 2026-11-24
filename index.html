@@ -62,6 +62,7 @@
   .line-txt{font-size:13px;color:var(--dim);margin-top:2px}
   .pace-alert{font-family:Barlow,sans-serif;font-size:13px;line-height:1.4;margin:6px 0 2px;padding:6px 9px;border:1px solid var(--strain);color:var(--paper)}
   .pace-alert b{color:var(--strain)}
+  .allows{font-family:Barlow,sans-serif;font-size:13px;line-height:1.4;margin:8px 0 2px;color:var(--paper)}
   .leg.lost{opacity:.5}
   .inj.dim{opacity:.4}
   .badge{font-size:11px;letter-spacing:.06em;padding:4px 9px;border:1px solid;white-space:nowrap;flex-shrink:0}
@@ -363,19 +364,40 @@ const stateColor = s => s === "clear" ? "var(--clear)" : s === "strain" ? "var(-
    keep showing, greyed out, but raise no pace or injury alerts: nothing they do can revive the slip. */
 function slipLost(p){ return p.legs.some(l => { const b = compute(l).badge; return b === "Missed" || b === "Dead"; }); }
 function onLostSlip(leg){ return PARLAYS.some(p => p.legs.some(l => l.id === leg.id) && slipLost(p)); }
+const OUT_OF_REACH_MULT = 3;   // an over leg needing more than this multiple of its current per-game rate is "out of reach" (never settles a leg)
 function paceAlert(leg){
   if(onLostSlip(leg)) return null;
   const c = compute(leg);
   if(c.kind !== "pace" || leg.dir !== "over" || c.req === null || c.played < 2) return null;
   if(["Cashed","Missed","Locked","Dead"].includes(c.badge)) return null;
   const rate = c.seasonRate || 0;
-  return c.req > 2 * rate ? {need: c.req, rate, mult: rate > 0 ? c.req / rate : null} : null;
+  return c.req > 2 * rate ? {need: c.req, rate, mult: rate > 0 ? c.req / rate : null, out: c.req > OUT_OF_REACH_MULT * rate} : null;
 }
 function paceAlertHTML(leg){
   const a = paceAlert(leg);
   if(!a) return "";
-  return '<div class="pace-alert">Pace alert: needs <b>' + fmt(a.need, leg.dec) + '</b> ' + leg.unit + '/g, ' +
+  return '<div class="pace-alert">' + (a.out ? 'Out of reach' : 'Pace alert') + ': needs <b>' + fmt(a.need, leg.dec) + '</b> ' + leg.unit + '/g, ' +
     (a.mult ? '<b>' + a.mult.toFixed(1) + 'x</b> his ' + fmt(a.rate, leg.dec) + '/g so far' : 'and he has <b>none</b> yet') + '</div>';
+}
+
+/* ---------- next opponent ----------
+   data.json carries "allowed": per leg, what each defense gives up per game to that leg's position in the
+   leg's stat, with a rank (1 = gives up the most). Written by autofill.py from the free nflverse feed. */
+function nextOpp(leg){
+  const done = loggedWeeks(leg.id);
+  const last = done.length ? Math.max.apply(null, done) : 0;
+  for(let w = last + 1; w <= 18; w++){
+    const o = opp(leg, w);
+    if(o && o !== "BYE" && o !== "TBD"){ const m = /([A-Z]{2,3})$/.exec(o); if(m) return {wk:w, label:o, team:m[1]}; }
+  }
+  return null;
+}
+function allowedHTML(leg){
+  const n = nextOpp(leg), a = remote.allowed && remote.allowed[leg.id];
+  if(!n || !a || !a.teams || !a.teams[n.team]) return "";
+  const t = a.teams[n.team];
+  return '<div class="allows">Next: <b>' + esc(n.label) + '</b> (week ' + n.wk + ') allows <b>' + fmt(t[0], leg.dec) + '</b> ' + leg.unit +
+    '/g to ' + esc(a.pos) + 's &middot; rank ' + t[1] + ' of ' + a.n + '</div>';
 }
 
 /* ---------- views ---------- */
@@ -453,6 +475,7 @@ function legHTML(p, leg, wkView){
       '<div class="badge ' + bcls + '">' + c.badge + '</div></div>' +
     paceAlertHTML(leg) +
     body +
+    allowedHTML(leg) +
     '<div class="matchups">' +
       '<div class="mu"><span>Last</span><strong>' + (esc(opp(leg,prevW)) || "\u2014") + '</strong><em>' + prevVal + '</em></div>' +
       '<div class="mu"><span>This week</span><strong>' + (esc(opp(leg,wkView)) || "\u2014") + '</strong><em>week ' + wkView + '</em></div>' +
@@ -522,14 +545,15 @@ function renderHome(){
     const alive = cs.filter(x => !["Cashed","Missed","Locked","Dead"].includes(x.c.badge)).length;
     const missed = cs.filter(x => x.c.badge === "Missed" || x.c.badge === "Dead").length;
     const tight = cs.slice().sort((a,b)=> pressure(b.leg) - pressure(a.leg))[0];
-    const alerts = p.legs.filter(l => paceAlert(l)).length;
+    const alerts = p.legs.filter(l => paceAlert(l) && !paceAlert(l).out).length;
+    const outs = p.legs.filter(l => paceAlert(l) && paceAlert(l).out).length;
     stake += parseFloat(p.stake.replace("$","")); pay += parseFloat(p.payout.replace("$",""));
     if(missed) dead++; else open++;
     html += '<div class="slipcard" data-slip="' + p.id + '" role="button" tabindex="0">' +
       '<div class="row"><div class="name">' + p.name + '</div><div class="pay num">' + p.payout + '</div></div>' +
       '<div class="meta">' + p.stake + ' &middot; ' + p.picks + ' &middot; ' + p.mult + ' &middot; <b>' + pctTxt(slipChance(p).p) + '</b> to hit</div>' +
       '<div class="dots">' + cs.map(x => '<div class="dot" style="background:' + (x.c.badge === "Missed" ? "var(--strain)" : stateColor(x.c.state)) + '" title="' + x.leg.who + '"></div>').join("") + '</div>' +
-      '<div class="sub">' + (missed ? '<b style="color:var(--strain)">Busted</b> &middot; ' : '') + alive + ' of ' + p.legs.length + ' legs open &middot; tightest: <b style="color:' + tight.leg.color + '">' + tight.leg.who + '</b>' + paceNote(tight) + (alerts ? ' &middot; <b style="color:var(--strain)">' + alerts + ' pace alert' + (alerts > 1 ? 's' : '') + '</b>' : '') + '</div>' +
+      '<div class="sub">' + (missed ? '<b style="color:var(--strain)">Busted</b> &middot; ' : '') + alive + ' of ' + p.legs.length + ' legs open &middot; tightest: <b style="color:' + tight.leg.color + '">' + tight.leg.who + '</b>' + paceNote(tight) + (outs ? ' &middot; <b style="color:var(--strain)">' + outs + ' out of reach</b>' : '') + (alerts ? ' &middot; <b style="color:var(--strain)">' + alerts + ' pace alert' + (alerts > 1 ? 's' : '') + '</b>' : '') + '</div>' +
     '</div>';
   }
   html += '<div class="totals"><span><b>$' + stake.toFixed(2) + '</b> staked</span><span><b>$' + pay.toFixed(2) + '</b> if all three land</span><span><b>' + open + '</b> of 3 alive</span></div>';
