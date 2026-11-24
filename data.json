@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-17",
- "throughWeek": 10,
+ "updated": "2026-11-24",
+ "throughWeek": 11,
  "_shape": "legs.<legId>.weeks.<weekNumber> = { val, opp, inj, note }. Omitted fields fall back to the schedule baked into index.html. A leg may also carry settled:'win' or settled:'loss' once the outcome is mathematically locked. Device edits always win over anything published here.",
  "_legIds": [
   "bowers",
@@ -79,6 +79,12 @@
      "val": 18,
      "opp": "vs SEA",
      "note": "Auto-filled from nflverse weekly stats."
+    },
+    "11": {
+     "val": 0,
+     "opp": "at DEN",
+     "note": "Auto-filled: no stat line, so logged as a missed game.",
+     "inj": "O"
     }
    }
   },
@@ -137,6 +143,11 @@
     "10": {
      "val": 0,
      "opp": "at BAL",
+     "note": "Auto-filled from nflverse weekly stats."
+    },
+    "11": {
+     "val": 2,
+     "opp": "vs NYJ",
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
@@ -197,6 +208,11 @@
     "10": {
      "val": 90,
      "opp": "at NYJ",
+     "note": "Auto-filled from nflverse weekly stats."
+    },
+    "11": {
+     "val": 91,
+     "opp": "vs MIA",
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
@@ -260,6 +276,11 @@
      "val": 0,
      "opp": "vs LAC",
      "note": "Auto-filled from nflverse weekly stats."
+    },
+    "11": {
+     "val": 0,
+     "opp": "at CAR",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -322,6 +343,11 @@
      "opp": "at DAL",
      "note": "Auto-filled: no stat line, so logged as a missed game.",
      "inj": "O"
+    },
+    "11": {
+     "val": 1,
+     "opp": "vs MIN",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    },
    "injNote": ""
@@ -503,6 +529,11 @@
      "val": 0,
      "opp": "at BAL",
      "note": "Auto-filled from nflverse weekly stats."
+    },
+    "11": {
+     "val": 0,
+     "opp": "vs NYJ",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -563,6 +594,11 @@
      "val": 343,
      "opp": "vs SF",
      "note": "Auto-filled from nflverse weekly stats."
+    },
+    "11": {
+     "val": 325,
+     "opp": "vs TEN",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -619,6 +655,11 @@
      "opp": "at CAR",
      "note": "One catch for 22 yards, then he suffered a concussion going up for a pass over the middle and was ruled out for the second half. Denver won 26-21.",
      "val": 22
+    },
+    "11": {
+     "val": 61,
+     "opp": "vs LV",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    },
    "injNote": ""
@@ -740,6 +781,11 @@
      "val": 0,
      "opp": "vs NE",
      "note": "Auto-filled from nflverse weekly stats."
+    },
+    "11": {
+     "val": 0,
+     "opp": "vs TB",
+     "note": "Auto-filled from nflverse weekly stats."
     }
    }
   },
@@ -797,6 +843,11 @@
     "10": {
      "val": 0,
      "opp": "vs PIT",
+     "note": "Auto-filled from nflverse weekly stats."
+    },
+    "11": {
+     "val": 0,
+     "opp": "at WAS",
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
@@ -859,6 +910,11 @@
     "10": {
      "val": 0,
      "opp": "vs LAC",
+     "note": "Auto-filled from nflverse weekly stats."
+    },
+    "11": {
+     "val": -13,
+     "opp": "at CAR",
      "note": "Auto-filled from nflverse weekly stats."
     }
    }
@@ -983,12 +1039,12 @@
    "pos": "TE",
    "n": 32,
    "teams": {
-    "CIN": [
-     76.11,
+    "WAS": [
+     80.4,
      1
     ],
-    "WAS": [
-     76.11,
+    "CIN": [
+     75.1,
      2
     ],
     "DET": [
@@ -1138,7 +1194,7 @@
      5
     ],
     "WAS": [
-     1.89,
+     1.9,
      6
     ],
     "MIA": [
@@ -1213,19 +1269,19 @@
      1.27,
      24
     ],
-    "CIN": [
-     1.22,
-     25
-    ],
     "HOU": [
      1.2,
-     26
+     25
     ],
     "PIT": [
      1.1,
-     27
+     26
     ],
     "LAR": [
+     1.1,
+     27
+    ],
+    "CIN": [
      1.1,
      28
     ],
@@ -1311,28 +1367,28 @@
      150.5,
      15
     ],
-    "WAS": [
-     149.22,
-     16
-    ],
     "CAR": [
      148.7,
-     17
+     16
     ],
     "IND": [
      148.0,
-     18
+     17
     ],
     "CLE": [
      146.5,
-     19
+     18
     ],
     "SF": [
      146.1,
-     20
+     19
     ],
     "BUF": [
      144.4,
+     20
+    ],
+    "WAS": [
+     142.3,
      21
     ],
     "NO": [
@@ -1347,16 +1403,16 @@
      138.2,
      24
     ],
+    "CIN": [
+     135.2,
+     25
+    ],
     "DEN": [
      132.0,
-     25
+     26
     ],
     "MIN": [
      131.6,
-     26
-    ],
-    "CIN": [
-     128.33,
      27
     ],
     "MIA": [
@@ -1437,7 +1493,7 @@
      1.0,
      13
     ],
-    "CIN": [
+    "WAS": [
      1.0,
      14
     ],
@@ -1449,16 +1505,16 @@
      0.9,
      16
     ],
-    "CLE": [
+    "CIN": [
      0.9,
      17
     ],
-    "TB": [
+    "CLE": [
      0.9,
      18
     ],
-    "WAS": [
-     0.89,
+    "TB": [
+     0.9,
      19
     ],
     "CHI": [
@@ -1571,7 +1627,7 @@
      1.0,
      13
     ],
-    "CIN": [
+    "WAS": [
      1.0,
      14
     ],
@@ -1583,16 +1639,16 @@
      0.9,
      16
     ],
-    "CLE": [
+    "CIN": [
      0.9,
      17
     ],
-    "TB": [
+    "CLE": [
      0.9,
      18
     ],
-    "WAS": [
-     0.89,
+    "TB": [
+     0.9,
      19
     ],
     "CHI": [
@@ -1658,7 +1714,7 @@
      1
     ],
     "WAS": [
-     280.44,
+     282.3,
      2
     ],
     "DAL": [
@@ -1669,12 +1725,12 @@
      274.7,
      4
     ],
-    "DEN": [
-     271.7,
+    "CIN": [
+     273.2,
      5
     ],
-    "CIN": [
-     265.33,
+    "DEN": [
+     271.7,
      6
     ],
     "NE": [
@@ -1807,40 +1863,40 @@
      5.1,
      5
     ],
-    "HOU": [
+    "WAS": [
      5.0,
      6
     ],
-    "ATL": [
-     4.9,
+    "HOU": [
+     5.0,
      7
     ],
-    "MIA": [
+    "ATL": [
      4.9,
      8
     ],
-    "DEN": [
+    "MIA": [
      4.9,
      9
     ],
-    "SEA": [
-     4.8,
+    "DEN": [
+     4.9,
      10
     ],
-    "CIN": [
-     4.78,
+    "SEA": [
+     4.8,
      11
     ],
     "LAR": [
      4.7,
      12
     ],
-    "NO": [
-     4.6,
+    "CIN": [
+     4.7,
      13
     ],
-    "WAS": [
-     4.56,
+    "NO": [
+     4.6,
      14
     ],
     "TB": [
@@ -1973,7 +2029,7 @@
      1.0,
      13
     ],
-    "CIN": [
+    "WAS": [
      1.0,
      14
     ],
@@ -1985,16 +2041,16 @@
      0.9,
      16
     ],
-    "CLE": [
+    "CIN": [
      0.9,
      17
     ],
-    "TB": [
+    "CLE": [
      0.9,
      18
     ],
-    "WAS": [
-     0.89,
+    "TB": [
+     0.9,
      19
     ],
     "CHI": [
@@ -2060,7 +2116,7 @@
      1
     ],
     "WAS": [
-     258.56,
+     262.7,
      2
     ],
     "NE": [
@@ -2099,24 +2155,24 @@
      242.6,
      11
     ],
+    "CIN": [
+     242.3,
+     12
+    ],
     "BUF": [
      240.9,
-     12
+     13
     ],
     "ARI": [
      240.82,
-     13
+     14
     ],
     "SF": [
      239.0,
-     14
+     15
     ],
     "PHI": [
      237.7,
-     15
-    ],
-    "CIN": [
-     237.11,
      16
     ],
     "LAC": [
@@ -2249,28 +2305,28 @@
      150.5,
      15
     ],
-    "WAS": [
-     149.22,
-     16
-    ],
     "CAR": [
      148.7,
-     17
+     16
     ],
     "IND": [
      148.0,
-     18
+     17
     ],
     "CLE": [
      146.5,
-     19
+     18
     ],
     "SF": [
      146.1,
-     20
+     19
     ],
     "BUF": [
      144.4,
+     20
+    ],
+    "WAS": [
+     142.3,
      21
     ],
     "NO": [
@@ -2285,16 +2341,16 @@
      138.2,
      24
     ],
+    "CIN": [
+     135.2,
+     25
+    ],
     "DEN": [
      132.0,
-     25
+     26
     ],
     "MIN": [
      131.6,
-     26
-    ],
-    "CIN": [
-     128.33,
      27
     ],
     "MIA": [
@@ -2599,12 +2655,12 @@
      10.1,
      2
     ],
-    "CIN": [
-     7.67,
-     3
-    ],
     "KC": [
      7.2,
+     3
+    ],
+    "CIN": [
+     6.9,
      4
     ],
     "JAX": [
@@ -2667,20 +2723,20 @@
      2.4,
      19
     ],
-    "WAS": [
-     2.33,
-     20
-    ],
     "NE": [
      2.2,
-     21
+     20
     ],
     "DET": [
      2.2,
-     22
+     21
     ],
     "ARI": [
      2.18,
+     22
+    ],
+    "WAS": [
+     2.1,
      23
     ],
     "CHI": [
@@ -2733,12 +2789,12 @@
      10.1,
      2
     ],
-    "CIN": [
-     7.67,
-     3
-    ],
     "KC": [
      7.2,
+     3
+    ],
+    "CIN": [
+     6.9,
      4
     ],
     "JAX": [
@@ -2801,20 +2857,20 @@
      2.4,
      19
     ],
-    "WAS": [
-     2.33,
-     20
-    ],
     "NE": [
      2.2,
-     21
+     20
     ],
     "DET": [
      2.2,
-     22
+     21
     ],
     "ARI": [
      2.18,
+     22
+    ],
+    "WAS": [
+     2.1,
      23
     ],
     "CHI": [
@@ -2911,7 +2967,7 @@
      1.0,
      13
     ],
-    "CIN": [
+    "WAS": [
      1.0,
      14
     ],
@@ -2923,16 +2979,16 @@
      0.9,
      16
     ],
-    "CLE": [
+    "CIN": [
      0.9,
      17
     ],
-    "TB": [
+    "CLE": [
      0.9,
      18
     ],
-    "WAS": [
-     0.89,
+    "TB": [
+     0.9,
      19
     ],
     "CHI": [
@@ -2998,7 +3054,7 @@
      1
     ],
     "WAS": [
-     258.56,
+     262.7,
      2
     ],
     "NE": [
@@ -3037,24 +3093,24 @@
      242.6,
      11
     ],
+    "CIN": [
+     242.3,
+     12
+    ],
     "BUF": [
      240.9,
-     12
+     13
     ],
     "ARI": [
      240.82,
-     13
+     14
     ],
     "SF": [
      239.0,
-     14
+     15
     ],
     "PHI": [
      237.7,
-     15
-    ],
-    "CIN": [
-     237.11,
      16
     ],
     "LAC": [
