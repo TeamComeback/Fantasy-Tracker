@@ -57,6 +57,30 @@ def load_feed() -> list[dict]:
     return [row for row in csv.DictReader(io.StringIO(text)) if row.get("season_type", "REG") == "REG"]
 
 
+def allowed_block(rows: list[dict], played: dict[int, dict[str, str]]) -> dict:
+    """Per leg: what every defense gives up per game to that leg's position in that leg's stat (and its rank,
+    1 = gives up the most), so the slip card can show the next opponent. Team-wide totals for the position."""
+    games: dict[str, set] = {}
+    for r in rows:
+        games.setdefault(TEAM_FIX.get(r["opponent_team"], r["opponent_team"]), set()).add(int(r["week"]))
+    out = {}
+    for lid, (name, stat) in LEGS.items():
+        mine = [r for r in rows if r["player_display_name"] == name]
+        if not mine:
+            continue
+        pos = Counter(r.get("position", "") for r in mine).most_common(1)[0][0]
+        tot: dict[str, float] = {}
+        for r in rows:
+            if r.get("position") == pos:
+                t = TEAM_FIX.get(r["opponent_team"], r["opponent_team"])
+                tot[t] = tot.get(t, 0.0) + stat(r)
+        per = {t: tot.get(t, 0.0) / len(g) for t, g in games.items() if g}
+        order = sorted(per, key=lambda t: -per[t])
+        out[lid] = {"pos": pos, "n": len(order),
+                    "teams": {t: [round(per[t], 2), order.index(t) + 1] for t in order}}
+    return out
+
+
 def main(dry: bool = False) -> None:
     rows = load_feed()
     played: dict[int, dict[str, str]] = {}          # week -> team -> "vs OPP" / "at OPP"
@@ -98,6 +122,7 @@ def main(dry: bool = False) -> None:
             weeks[str(wk)] = entry
             added.append(f"{lid} wk{wk}={val}")
 
+    data["allowed"] = allowed_block(rows, played)
     if added:
         data["throughWeek"] = max(int(data.get("throughWeek") or 0), last_week)
         et = datetime.now(timezone(timedelta(hours=-4)))
