@@ -22,8 +22,8 @@
  ],
  "legs": {
   "bowers": {
-   "inj": "O",
-   "injNote": "Raiders coach Klink Kubiak said after Sunday's 38-24 loss to the Broncos that he's optimistic Bowers (ankle/quadriceps) will be available to face the Browns on Nov. 29, Ryan McFadden of ESPN.com reports.",
+   "inj": "Q",
+   "injNote": "Head coach Klint Kubiak said that Bowers (ankle/quadriceps) remained a limited participant in Wednesday's practice, but the Raiders are optimistic that the tight end will play Sunday against the Browns, Sam Warren of The Athletic reports.",
    "weeks": {
     "1": {
      "val": 0,
@@ -151,7 +151,7 @@
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
-   "injNote": "Herbert entered the concussion protocol after Sunday's 27-24 loss to the Jets, Noah Furtado of The Athletic reports."
+   "injNote": "Chargers coach Jim Harbaugh said that Herbert (concussion) won't practice Wednesday, Noah Furtado of The Athletic reports."
   },
   "moore": {
    "inj": "",
@@ -219,8 +219,8 @@
    "injNote": ""
   },
   "flowers": {
-   "inj": "",
-   "injNote": "",
+   "inj": "Q",
+   "injNote": "Flowers (ankle) was listed as a limited participant in Wednesday's practice.",
    "weeks": {
     "1": {
      "val": 1,
@@ -285,7 +285,7 @@
    }
   },
   "evans": {
-   "inj": "",
+   "inj": "Q",
    "weeks": {
     "1": {
      "val": 1,
@@ -350,7 +350,7 @@
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
-   "injNote": ""
+   "injNote": "Evans (Achilles) won't practice Wednesday, Harrison Rich of the San Francisco Chronicle reports."
   },
   "lamar": {
    "inj": "IR",
@@ -854,8 +854,8 @@
    "injNote": ""
   },
   "zayrush": {
-   "inj": "",
-   "injNote": "",
+   "inj": "Q",
+   "injNote": "Flowers (ankle) was listed as a limited participant in Wednesday's practice.",
    "weeks": {
     "1": {
      "val": 0,
@@ -1033,7 +1033,7 @@
    "settled": "win"
   }
  },
- "injuriesUpdated": "2026-11-24 01:20 ET",
+ "injuriesUpdated": "2026-11-25 22:46 ET",
  "allowed": {
   "bowers": {
    "pos": "TE",
