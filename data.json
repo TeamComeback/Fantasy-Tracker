@@ -23,7 +23,7 @@
  "legs": {
   "bowers": {
    "inj": "Q",
-   "injNote": "Head coach Klint Kubiak said that Bowers (ankle/quadriceps) remained a limited participant in Wednesday's practice, but the Raiders are optimistic that the tight end will play Sunday against the Browns, Sam Warren of The Athletic reports.",
+   "injNote": "Bowers (ankle) remained a limited participant in Thursday's practice, Sam Warren of The Athletic reports.",
    "weeks": {
     "1": {
      "val": 0,
@@ -151,7 +151,7 @@
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
-   "injNote": "Chargers coach Jim Harbaugh said that Herbert (concussion) won't practice Wednesday, Noah Furtado of The Athletic reports."
+   "injNote": "Herbert (concussion) was officially deemed a non-participant in Thursday's practice."
   },
   "moore": {
    "inj": "",
@@ -219,8 +219,8 @@
    "injNote": ""
   },
   "flowers": {
-   "inj": "Q",
-   "injNote": "Flowers (ankle) was listed as a limited participant in Wednesday's practice.",
+   "inj": "",
+   "injNote": "",
    "weeks": {
     "1": {
      "val": 1,
@@ -350,7 +350,7 @@
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
-   "injNote": "Evans (Achilles) won't practice Wednesday, Harrison Rich of the San Francisco Chronicle reports."
+   "injNote": "Evans (Achilles) was listed as limited on Thursday's practice report, Matt Maiocco of NBC Sports Bay Area reports."
   },
   "lamar": {
    "inj": "IR",
@@ -665,7 +665,7 @@
    "injNote": ""
   },
   "nacua": {
-   "inj": "IR",
+   "inj": "",
    "weeks": {
     "1": {
      "val": 0,
@@ -729,7 +729,7 @@
      "inj": "O"
     }
    },
-   "injNote": "Nacua (knee/toe) is expected to be sidelined 4-to-5 months after undergoing surgery Tuesday to repair his right MCL, which means he won't be on track to return at any point during the playoffs, Adam Schefter of ESPN reports."
+   "injNote": ""
   },
   "fox": {
    "inj": "",
@@ -860,8 +860,8 @@
    "injNote": ""
   },
   "zayrush": {
-   "inj": "Q",
-   "injNote": "Flowers (ankle) was listed as a limited participant in Wednesday's practice.",
+   "inj": "",
+   "injNote": "",
    "weeks": {
     "1": {
      "val": 0,
@@ -1039,7 +1039,7 @@
    "settled": "win"
   }
  },
- "injuriesUpdated": "2026-11-25 22:46 ET",
+ "injuriesUpdated": "2026-11-26 22:47 ET",
  "allowed": {
   "bowers": {
    "pos": "TE",
