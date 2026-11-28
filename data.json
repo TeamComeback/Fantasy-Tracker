@@ -23,7 +23,7 @@
  "legs": {
   "bowers": {
    "inj": "Q",
-   "injNote": "Bowers (ankle) remained a limited participant in Thursday's practice, Sam Warren of The Athletic reports.",
+   "injNote": "Bowers (ankle) will be listed as questionable for Sunday night's game against the Browns, Adam Hill of the Las Vegas Review-Journal reports.",
    "weeks": {
     "1": {
      "val": 0,
@@ -89,7 +89,7 @@
    }
   },
   "herbert": {
-   "inj": "Q",
+   "inj": "O",
    "weeks": {
     "1": {
      "val": 1,
@@ -151,7 +151,7 @@
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
-   "injNote": "Herbert (concussion) was officially deemed a non-participant in Thursday's practice."
+   "injNote": "Herbert (concussion) has been ruled out for Sunday's game against the Patriots."
   },
   "moore": {
    "inj": "",
@@ -355,7 +355,7 @@
      "note": "Auto-filled from nflverse weekly stats."
     }
    },
-   "injNote": "Evans (Achilles) was listed as limited on Thursday's practice report, Matt Maiocco of NBC Sports Bay Area reports."
+   "injNote": "Evans (Achilles) is listed as questionable for Sunday's contest against the Seahawks, Matt Maiocco of NBC Sports Bay Area reports."
   },
   "lamar": {
    "inj": "IR",
@@ -1054,7 +1054,7 @@
    "settled": "win"
   }
  },
- "injuriesUpdated": "2026-11-26 22:47 ET",
+ "injuriesUpdated": "2026-11-27 22:31 ET",
  "allowed": {
   "bowers": {
    "pos": "TE",
